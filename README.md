@@ -24,3 +24,10 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Asset Credits
+
+This portfolio uses the following assets, which are credited to their respective authors:
+
+- [Pixel Art Social Media Icon](https://joi3.itch.io/pixel-art-social-media-icon) by [JOI3](https://joi3.itch.io/) (Mail, Phone, GitHub and LinkedIn button sprites)
+- [320 Pixel Emojis](https://joi3.itch.io/joi3s-free-pixel-art-emoji-icon) by [JOI3](https://joi3.itch.io/) (Sun and Moon sprites)
