@@ -4,7 +4,7 @@ In this project, I built a personal portfolio website using Next.js, showcasing 
 
 ## Planned Features
 
-- Dark Mode toggle
+- Dark Mode toggle, using [next-themes](https://github.com/pacocoursey/next-themes).
 - Language toggle (English and Spanish)
 - Subpages for each project, with screenshots and videos whenever possible
 - Retro pixel art style, with a focus on readability, originality and creativity
