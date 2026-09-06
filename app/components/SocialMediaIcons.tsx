@@ -1,8 +1,12 @@
 import Image from "next/image";
 
-export default function SocialMediaIcons() {
+interface SocialMediaIconsProps {
+  className?: string;
+}
+
+export default function SocialMediaIcons({ className }: SocialMediaIconsProps) {
   return (
-    <div className="flex flex-row gap-4">
+    <div className={`flex flex-row gap-4 ${className}`}>
       <a href="mailto:feliarroyo@hotmail.com" target="_blank" rel="noopener noreferrer">
         <Image src="/images/icons/sm_mail.png" alt="Twitter" width={24} height={24} />
       </a>
