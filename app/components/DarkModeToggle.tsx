@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import Tooltip from './Tooltip';
 
 interface DarkModeToggleProps {
   className?: string;
@@ -22,11 +23,14 @@ export default function DarkModeToggle({ className }: DarkModeToggleProps) {
 
   return (
     <div className={`${className}`}>
-      <button 
-        onClick={() => setTheme(isDark ? 'light' : 'dark')} 
-        className="cursor-pointer relative w-24 h-24 focus:outline-none bg-transparent border-none"
-        aria-label="Toggle Theme"
-      />
+      <Tooltip position="bottom" text="Toggle Dark Mode">
+        <button
+          onClick={() => setTheme(isDark ? 'light' : 'dark')}
+          className="block cursor-pointer relative w-[54px] h-[54px] focus:outline-none bg-transparent border-none"
+          aria-label="Toggle Theme"
+        />
+      </Tooltip>
     </div>
+
   );
 }
