@@ -24,7 +24,14 @@ export default function DarkModeToggle({ className }: DarkModeToggleProps) {
   return (
     <div className={`${className}`}>
       <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-        <Image src={theme === 'dark' ? "/images/icons/darkmode_on.png" : "/images/icons/darkmode_off.png"} alt="Sun" width={24} height={24} />
+      <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="cursor-pointer">
+        <Image
+          src={theme === 'dark' ? "/images/icons/darkmode_on.png" : "/images/icons/darkmode_off.png"} alt="Sun"
+          width={32}
+          height={32}
+          unoptimized style=
+          {{ imageRendering: 'pixelated' }}
+        />
       </button>
     </div>
   );
