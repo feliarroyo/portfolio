@@ -22,7 +22,7 @@ export default function ThemeBackground() {
       {/* SLIDING ICONS LAYER: z-[-2] */}
       <div className="fixed inset-0 z-[-2] pointer-events-none overflow-hidden">
         {/* Sun */}
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 transition-transform duration-700 ease-in-out translate-y-0 dark:translate-y-[110vh]">
+        <div className="absolute top-4 sm:top-8 left-1/2 -translate-x-1/2 transition-transform duration-700 ease-in-out translate-y-0 dark:translate-y-[110vh]">
           <Image
             src="/images/icons/darkmode_off.png" 
             alt="Light Mode"
@@ -34,7 +34,7 @@ export default function ThemeBackground() {
         </div>
 
         {/* Moon */}
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 transition-transform duration-700 ease-in-out translate-y-[110vh] dark:translate-y-0">
+        <div className="absolute top-4 sm:top-8 left-1/2 -translate-x-1/2 transition-transform duration-700 ease-in-out translate-y-[110vh] dark:translate-y-0">
           <Image
             src="/images/icons/darkmode_on.png" 
             alt="Dark Mode"
