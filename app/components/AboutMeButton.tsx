@@ -6,8 +6,8 @@ export default function AboutMeButton() {
             <Image
                 src="/images/icons/avatar/avatar.png"
                 alt="About Me"
-                width={32}
-                height={32}
+                width={64}
+                height={64}
                 unoptimized
                 style={{ imageRendering: 'pixelated' }}
             />

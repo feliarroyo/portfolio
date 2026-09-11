@@ -6,8 +6,8 @@ export default function IdeaBoxButton() {
             <Image
                 src="/images/icons/house/house.png"
                 alt="Future Ideas"
-                width={32}
-                height={32}
+                width={64}
+                height={64}
                 unoptimized
                 style={{ imageRendering: 'pixelated' }}
             />

@@ -6,8 +6,8 @@ export default function ProjectsButton() {
             <Image 
                 src="/images/icons/chest/chest_3.png" 
                 alt="Projects" 
-                width={32} 
-                height={32}
+                width={64} 
+                height={64}
                 unoptimized
                 style = {{imageRendering: 'pixelated'}}
             />

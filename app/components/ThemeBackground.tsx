@@ -26,8 +26,8 @@ export default function ThemeBackground() {
           <Image
             src="/images/icons/darkmode_off.png" 
             alt="Light Mode"
-            width={96}
-            height={96}
+            width={54}
+            height={54}
             unoptimized 
             style={{ imageRendering: 'pixelated' }}
           />
@@ -38,8 +38,8 @@ export default function ThemeBackground() {
           <Image
             src="/images/icons/darkmode_on.png" 
             alt="Dark Mode"
-            width={96}
-            height={96}
+            width={54}
+            height={54}
             unoptimized 
             style={{ imageRendering: 'pixelated' }}
           />
