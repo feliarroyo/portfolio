@@ -11,7 +11,6 @@ export default function DarkModeToggle({ className }: DarkModeToggleProps) {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
-  
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true)
@@ -23,7 +22,6 @@ export default function DarkModeToggle({ className }: DarkModeToggleProps) {
 
   return (
     <div className={`${className}`}>
-      <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
       <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="cursor-pointer">
         <Image
           src={theme === 'dark' ? "/images/icons/darkmode_on.png" : "/images/icons/darkmode_off.png"} alt="Sun"
