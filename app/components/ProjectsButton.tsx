@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Tooltip from "./Tooltip";
+import { useLanguage } from "../context/LanguageContext";
 
 type ChestState = "idle" | "hover" | "opening" | "opened";
 
@@ -10,6 +11,7 @@ export default function ProjectsButton() {
     const [state, setState] = useState<ChestState>("idle");
     const [frame, setFrame] = useState(0);
     const router = useRouter();
+    const { t } = useLanguage();
 
     const FRAME_SIZE = 64;
 
@@ -67,10 +69,10 @@ export default function ProjectsButton() {
     };
 
     return (
-        <Tooltip text="Projects" position="bottom">
+        <Tooltip text={t.nav.projects} position="bottom">
             <button
                 type="button"
-                aria-label="Projects"
+                aria-label={t.nav.projects}
                 className="group flex items-center justify-center cursor-pointer bg-transparent border-none p-0 select-none transition-transform"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Pixelify_Sans, Geist, Geist_Mono } from "next/font/google";
+import { Pixelify_Sans } from "next/font/google";
+import { LanguageProvider } from "./context/LanguageContext";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 
@@ -21,7 +22,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>
