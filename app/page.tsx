@@ -2,7 +2,7 @@ import DarkModeToggle from "./components/DarkModeToggle";
 import SocialMediaIcons from "./components/SocialMediaIcons";
 import AboutMeButton from "./components/AboutMeButton";
 import ProjectsButton from "./components/ProjectsButton";
-import IdeaBoxButton from "./components/IdeaBoxButton";
+import CVButton from "./components/CVButton";
 import LanguageToggle from "./components/LanguageToggle";
 import ThemeBackground from "./components/ThemeBackground";
 import ThemeGround from "./components/ThemeGround";
@@ -29,7 +29,7 @@ export default function Home() {
       <ThemeGround>
         <AboutMeButton /> 
         <ProjectsButton /> 
-        <IdeaBoxButton />  
+        <CVButton />  
       </ThemeGround>
       
     </div>
