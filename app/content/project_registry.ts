@@ -115,11 +115,11 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         techStack: ["python", "pyside6"],
         links: [],
         iconUrl: "/images/projects/eaygenerator/icon.png",
-        logoUrl: "/images/projects/eaygenerator/logo.png",
+        logoUrl: "/images/projects/eaygenerator/logo.webp",
         mediaUrls: []
     },
     {
-        slug: "jackboxenespanol",
+        slug: "jackboxesp",
         title: {
             en: "Jackbox en español Website",
             es: "Sitio web de Jackbox en español"
@@ -134,8 +134,8 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         },
         techStack: ["nextjs", "tailwindcss", "vercel"],
         links: [],
-        iconUrl: "/images/projects/jackboxenspanol/icon.png",
-        logoUrl: "/images/projects/jackboxenspanol/logo.png",
+        iconUrl: "/images/projects/jackboxesp/icon.png",
+        logoUrl: "/images/projects/jackboxesp/logo.png",
         mediaUrls: []
     },
     {
@@ -155,7 +155,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         techStack: ["java", "yacc", "masm32"],
         links: [],
         iconUrl: "/images/projects/asmtoexe/icon.png",
-        logoUrl: "/images/projects/asmtoexe/logo.png",
+        logoUrl: "/images/projects/asmtoexe/logo.webp",
         mediaUrls: []
     },
     {
@@ -173,8 +173,8 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         },
         techStack: ["unity", "csharp", "rasa"],
         links: [],
-        iconUrl: "/images/projects/safetalk/icon.png",
-        logoUrl: "/images/projects/safetalk/logo.png",
+        iconUrl: "/images/projects/pokerplanning/icon.png",
+        logoUrl: "/images/projects/pokerplanning/logo.png",
         mediaUrls: []
     },
     {
@@ -193,8 +193,8 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         },
         techStack: ["python", "pandas", "scikitlearn"],
         links: [],
-        iconUrl: "/images/projects/imdbpersonalrectree/icon.png",
-        logoUrl: "/images/projects/imdbpersonalrectree/logo.png",
+        iconUrl: "/images/projects/imdbdecisiontree/icon.png",
+        logoUrl: "/images/projects/imdbdecisiontree/logo.png",
         mediaUrls: []
     }
 ]
