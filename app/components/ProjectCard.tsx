@@ -16,15 +16,17 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   // English as default
   const title = project.title[language] || project.title.en;
   const blurb = project.blurb[language] || project.blurb.en;
+  const headerBg = project.theme?.headerBgClass || "bg-slate-100 dark:bg-slate-900";
+  const contentBg = "bg-white dark:bg-slate-800";
 
   return (
     <div
       onClick={() => setActiveProject(project)}
-      className="group flex flex-col bg-white dark:bg-slate-800 border-4 border-slate-500 dark:border-slate-500 overflow-hidden hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer"
+      className={`group flex flex-col border-4 border-slate-500 dark:border-slate-500 overflow-hidden hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer ${contentBg}`}
     >
 
       {/* Logo/Header Area */}
-      <div className="h-32 bg-slate-100 dark:bg-slate-900 flex items-center justify-center p-4 relative border-b border-slate-200 dark:border-slate-700">
+      <div className={`h-32 flex items-center justify-center p-4 relative border-b border-slate-200 dark:border-slate-700 ${headerBg}`}>
         <Image
           src={project.logoUrl}
           alt={`${title} logo`}

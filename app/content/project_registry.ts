@@ -1,3 +1,8 @@
+export interface ProjectTheme {
+    headerBgClass: string;
+    contentBgClass: string; // unused for now
+}
+
 export interface LocalizedString {
     en: string;
     es?: string;
@@ -23,6 +28,7 @@ export interface ProjectItem {
     iconUrl: string;
     logoUrl: string;
     mediaUrls: string[];
+    theme: ProjectTheme;
 }
 
 export const PORTFOLIO_PROJECTS: ProjectItem[] = [
@@ -59,7 +65,11 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/charades/icon.png",
         logoUrl: "/images/projects/charades/logo.png",
-        mediaUrls: []
+        mediaUrls: [],
+        theme: {
+            headerBgClass: "bg-blue-800",
+            contentBgClass: "bg-blue-50 dark:bg-blue-950"
+        }
     },
     {
         slug: "qualitytrack",
@@ -86,7 +96,11 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/qualitytrack/icon.png",
         logoUrl: "/images/projects/qualitytrack/logo.png",
-        mediaUrls: []
+        mediaUrls: [],
+        theme: {
+            headerBgClass: "bg-pink-200 dark:bg-pink-900",
+            contentBgClass: "bg-blue-50 dark:bg-blue-950"
+        }
     },
     {
         slug: "mhgame",
@@ -120,7 +134,11 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/mhgame/icon.png",
         logoUrl: "/images/projects/mhgame/logo.png",
-        mediaUrls: []
+        mediaUrls: [],
+        theme: {
+            headerBgClass: "bg-purple-200 dark:bg-purple-900",
+            contentBgClass: "bg-blue-50 dark:bg-blue-950"
+        }
     },
     {
         slug: "eaygenerator",
@@ -154,7 +172,11 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/eaygenerator/icon.png",
         logoUrl: "/images/projects/eaygenerator/logo.webp",
-        mediaUrls: []
+        mediaUrls: [],
+        theme: {
+            headerBgClass: "bg-yellow-200 dark:bg-yellow-900",
+            contentBgClass: "bg-blue-50 dark:bg-blue-950"
+        }
     },
     {
         slug: "jackboxesp",
@@ -189,7 +211,11 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/jackboxesp/icon.png",
         logoUrl: "/images/projects/jackboxesp/logo.png",
-        mediaUrls: []
+        mediaUrls: [],
+        theme: {
+            headerBgClass: "bg-cyan-200 dark:bg-cyan-900",
+            contentBgClass: "bg-blue-50 dark:bg-blue-950"
+        }
     },
     {
         slug: "asmtoexe",
@@ -217,7 +243,11 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/asmtoexe/icon.png",
         logoUrl: "/images/projects/asmtoexe/logo.webp",
-        mediaUrls: []
+        mediaUrls: [],
+        theme: {
+            headerBgClass: "bg-gray-200 dark:bg-gray-600",
+            contentBgClass: "bg-blue-50 dark:bg-blue-950"
+        }
     },
     {
         slug: "pokerplanning",
@@ -244,7 +274,11 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/pokerplanning/icon.png",
         logoUrl: "/images/projects/pokerplanning/logo.png",
-        mediaUrls: []
+        mediaUrls: [],
+        theme: {
+            headerBgClass: "bg-violet-200 dark:bg-violet-900",
+            contentBgClass: "bg-blue-50 dark:bg-blue-950"
+        }
     },
     {
         slug: "imdbdecisiontree",
@@ -272,6 +306,10 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/imdbdecisiontree/icon.png",
         logoUrl: "/images/projects/imdbdecisiontree/logo.png",
-        mediaUrls: []
+        mediaUrls: [],
+        theme: {
+            headerBgClass: "bg-orange-200 dark:bg-orange-900",
+            contentBgClass: "bg-blue-50 dark:bg-blue-950"
+        }
     }
 ]
