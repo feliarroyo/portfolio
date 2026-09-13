@@ -7,6 +7,7 @@ import { UIProvider } from "./context/UIContext";
 import ProjectsOverlay from "./components/ProjectsOverlay";
 import DarkModeToggle from "./components/DarkModeToggle";
 import ThemeBackground from "./components/ThemeBackground";
+import AboutOverlay from "./components/AboutMeOverlay";
 
 const pixelify = Pixelify_Sans({
   variable: "--font-pixelify",
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <UIProvider>
 
             <ProjectsOverlay />
+            <AboutOverlay/>
             {children}
 
           </UIProvider>

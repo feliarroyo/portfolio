@@ -12,7 +12,10 @@ export type Dictionary = {
     projects: string;
     cv: string;
     close: string;
-  };
+  },
+  text: {
+    aboutMeContent: string;
+  }
 };
 
 // 2. Lock the translations object to require "en" and "es", and force them to match the Dictionary type
@@ -29,6 +32,9 @@ export const translations: Record<"en" | "es", Dictionary> = {
       cv: "Download CV",
       close: "Cerrar"
     },
+    text: {
+      aboutMeContent: "Hello! I am Felipe Arroyo, a software developer focused on building tools, games, and web applications with a focus on quality and performance."
+    }
   },
   es: {
     nav: {
@@ -42,6 +48,9 @@ export const translations: Record<"en" | "es", Dictionary> = {
       cv: "Descargar CV",
       close: "Cerrar"
     },
+    text: {
+      aboutMeContent: "¡Hola! Soy Felipe Arroyo, un desarrollador de software enfocado en crear herramientas, juegos y aplicaciones web con un enfoque en la calidad y el rendimiento."
+    }
   },
 };
 
