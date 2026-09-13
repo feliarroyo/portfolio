@@ -10,7 +10,8 @@ export type Dictionary = {
     title: string;
     aboutMe: string;
     projects: string;
-    ideaBox: string;
+    cv: string;
+    close: string;
   };
 };
 
@@ -25,7 +26,8 @@ export const translations: Record<"en" | "es", Dictionary> = {
       title: "Felipe Arroyo",
       aboutMe: "About Me",
       projects: "Projects",
-      ideaBox: "Future Ideas",
+      cv: "Download CV",
+      close: "Cerrar"
     },
   },
   es: {
@@ -37,7 +39,8 @@ export const translations: Record<"en" | "es", Dictionary> = {
       title: "Felipe Arroyo",
       aboutMe: "Sobre mí",
       projects: "Proyectos",
-      ideaBox: "Ideas futuras",
+      cv: "Descargar CV",
+      close: "Cerrar"
     },
   },
 };
