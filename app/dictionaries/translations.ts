@@ -5,6 +5,7 @@ export type Dictionary = {
     github: string;
     linkedin: string;
     title: string;
+    subtitle: string;
     aboutMe: string;
     projects: string;
     cv: string;
@@ -23,6 +24,7 @@ export const translations: Record<"en" | "es", Dictionary> = {
       github: "Go To GitHub Profile",
       linkedin: "Go To LinkedIn Profile",
       title: "Felipe Arroyo",
+      subtitle: "Systems Engineer | Backend Developer",
       aboutMe: "About Me",
       projects: "Projects",
       cv: "Download CV",
@@ -39,6 +41,7 @@ export const translations: Record<"en" | "es", Dictionary> = {
       github: "Ir a perfil de GitHub",
       linkedin: "Ir a perfil de LinkedIn",
       title: "Felipe Arroyo",
+      subtitle: "Ingeniero de Sistemas | Desarrollador Backend",
       aboutMe: "Sobre mí",
       projects: "Proyectos",
       cv: "Descargar CV",
