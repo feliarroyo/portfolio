@@ -67,7 +67,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         logoUrl: "/images/projects/charades/logo.png",
         mediaUrls: [],
         theme: {
-            headerBgClass: "bg-blue-800",
+            headerBgClass: "bg-blue-300 dark:bg-blue-900",
             contentBgClass: "bg-blue-50 dark:bg-blue-950"
         }
     },
