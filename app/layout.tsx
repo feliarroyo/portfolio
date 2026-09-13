@@ -3,6 +3,10 @@ import { Pixelify_Sans } from "next/font/google";
 import { LanguageProvider } from "./context/LanguageContext";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import { UIProvider } from "./context/UIContext";
+import ProjectsOverlay from "./components/ProjectsOverlay";
+import DarkModeToggle from "./components/DarkModeToggle";
+import ThemeBackground from "./components/ThemeBackground";
 
 const pixelify = Pixelify_Sans({
   variable: "--font-pixelify",
@@ -22,11 +26,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <LanguageProvider>
+        <LanguageProvider>
+          <UIProvider>
+
+            <ProjectsOverlay />
             {children}
-          </LanguageProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+
+          </UIProvider>
+
+        </LanguageProvider>
+      </ThemeProvider>
+
+    </body>
+    </html >
   );
 }

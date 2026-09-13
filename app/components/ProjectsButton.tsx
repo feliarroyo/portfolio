@@ -1,16 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Tooltip from "./Tooltip";
 import { useLanguage } from "../context/LanguageContext";
+import { useUI } from "../context/UIContext";
+import Image from "next/image";
 
 type ChestState = "idle" | "hover" | "opening" | "opened";
 
 export default function ProjectsButton() {
     const [state, setState] = useState<ChestState>("idle");
     const [frame, setFrame] = useState(0);
-    const router = useRouter();
+    const { setProjectsOpen } = useUI();
     const { t } = useLanguage();
 
     const FRAME_SIZE = 64;
@@ -28,11 +29,16 @@ export default function ProjectsButton() {
                     if (prev >= 3) {
                         clearInterval(timer);
                         setState("opened");
-                        
+
                         setTimeout(() => {
-                            router.push("/projects");
-                        }, 250); 
-                        
+                            // Open projects page and reset chest
+                            setProjectsOpen(true);
+                            setTimeout(() => {
+                                setState("idle");
+                                setFrame(0);
+                            }, 500);
+                        }, 250);
+
                         return 3;
                     }
                     return prev + 1;
@@ -41,7 +47,7 @@ export default function ProjectsButton() {
         }
 
         return () => clearInterval(timer);
-    }, [state, router]);
+    }, [state, setProjectsOpen]);
 
     const row = state === "opening" || state === "opened" ? 1 : 0;
     const xPos = -frame * FRAME_SIZE;
@@ -73,12 +79,35 @@ export default function ProjectsButton() {
             <button
                 type="button"
                 aria-label={t.nav.projects}
-                className="group flex items-center justify-center cursor-pointer bg-transparent border-none p-0 select-none transition-transform"
+                // Added relative to the button to contain the absolutely positioned document
+                className="relative group flex items-center justify-center cursor-pointer bg-transparent border-none p-0 select-none transition-transform"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 onClick={handleClick}
             >
+                {/* Document Sprite (z-0: behind the chest, grows on click)
+                */}
                 <div
+                    className={`absolute inset-0 m-auto w-8 h-8 pointer-events-none z-0 ${
+                        state === "opening" || state === "opened"
+                            ? "transition-all duration-800 ease-in translate-y-[-120vh] scale-110"
+                            : "transition-none translate-y-4 scale-80"
+                    }`}
+                >
+                    <Image
+                        src="/images/icons/chest/documents.png"
+                        alt="Project Document"
+                        width={96}
+                        height={96}
+                        unoptimized
+                        className="object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                    />
+                </div>
+
+                {/* The Chest Sprite (z-10 to be infront of document) */}
+                <div
+                    className="relative z-10"
                     style={{
                         width: `${FRAME_SIZE}px`,
                         height: `${FRAME_SIZE}px`,
