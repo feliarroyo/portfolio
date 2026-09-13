@@ -1,6 +1,3 @@
-// dictionaries/translations.ts
-
-// 1. Define the shape so TypeScript enforces all languages have the same keys
 export type Dictionary = {
   nav: {
     toggleTheme: string;
@@ -18,7 +15,6 @@ export type Dictionary = {
   }
 };
 
-// 2. Lock the translations object to require "en" and "es", and force them to match the Dictionary type
 export const translations: Record<"en" | "es", Dictionary> = {
   en: {
     nav: {
