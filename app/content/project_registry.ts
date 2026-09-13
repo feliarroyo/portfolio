@@ -36,8 +36,8 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
             en: "Open-source, ad-free version of the party game for Android and Windows",
             es: "Versión de código abierto y sin anuncios del juego de fiesta para Android y Windows"
         },
-        description: { 
-            en: "Open-source, ad-free version of the party game for Android and Windows", 
+        description: {
+            en: "Charades is a party game developed in Unity for Android devices (with support for PC versions as well).\n- Play the classic game about guessing a word or thing with help of one or more friends in over 100 different categories: from classics such as Animals to more specific categories, such as characters from a video game.\n- Multiple control schemes for mobile devices: Answer using either the gyroscope or your phone's touchscreen (or both)\n- Three game modes: Play a quick round in a single category, a selection of rounds in a row, or even mashup many categories in a single chaotic round.\n- Built-in 1v1 team mode. Compete head-to-head to see which team gets more points.\n- Custom category support, with a built-in creator within the app. You can load and share categories easily!",
             es: "Versión de código abierto y sin anuncios del juego de fiesta para Android y Windows"
         },
         techStack: ["unity", "csharp"],
@@ -75,7 +75,15 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
             es: "Aplicación web para el seguimiento del control de calidad en un proceso de fabricación"
         },
         techStack: ["java", "springboot", "postgresql"],
-        links: [],
+        links: [
+            {
+                label: {
+                    en: "GitHub Repo",
+                    es: "Repositorio de GitHub"
+                },
+                url: "https://github.com/No-Country-simulation/S08-26-equipo04"
+            },
+        ],
         iconUrl: "/images/projects/qualitytrack/icon.png",
         logoUrl: "/images/projects/qualitytrack/logo.png",
         mediaUrls: []
@@ -94,7 +102,22 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
             es: "Proyecto compuesto por múltiples componentes, incluyendo el juego principal, una aplicación de administración y una aplicación móvil para que los usuarios jueguen. El juego principal está construido usando Unity y C#, mientras que la aplicación de administración es una aplicación web construida con Vue.js y Firebase. La aplicación móvil también está construida usando Unity y C#."
         },
         techStack: ["unity", "csharp", "firebase", "vuejs", "vercel"],
-        links: [],
+        links: [
+            {
+                label: {
+                    en: "GitHub Repo (Mobile App)",
+                    es: "Repositorio de GitHub (app móvil)"
+                },
+                url: "https://github.com/feliarroyo/evaluacion-cognitiva"
+            },
+            {
+                label: {
+                    en: "GitHub Repo (Web App)",
+                    es: "Repositorio de GitHub (app web)"
+                },
+                url: "https://github.com/feliarroyo/evaluacion-cognitiva-web"
+            },
+        ],
         iconUrl: "/images/projects/mhgame/icon.png",
         logoUrl: "/images/projects/mhgame/logo.png",
         mediaUrls: []
@@ -113,7 +136,22 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
             es: "Editor de prompts para la serie Fibbage: Enough About You"
         },
         techStack: ["python", "pyside6"],
-        links: [],
+        links: [
+            {
+                label: {
+                    en: "GitHub Repo",
+                    es: "Repositorio de GitHub"
+                },
+                url: "https://github.com/feliarroyo/eay-generator"
+            },
+            {
+                label: {
+                    en: "Download Latest Version",
+                    es: "Descargar la última versión"
+                },
+                url: "https://github.com/feliarroyo/eay-generator/releases/latest"
+            }
+        ],
         iconUrl: "/images/projects/eaygenerator/icon.png",
         logoUrl: "/images/projects/eaygenerator/logo.webp",
         mediaUrls: []
@@ -133,7 +171,22 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
             es: "Sitio web para el proyecto de traducción de Jackbox en español"
         },
         techStack: ["nextjs", "tailwindcss", "vercel"],
-        links: [],
+        links: [
+            {
+                label: {
+                    en: "GitHub Repo",
+                    es: "Repositorio de GitHub"
+                },
+                url: "https://github.com/feliarroyo/traducciones-jackboxlol-site"
+            },
+            {
+                label: {
+                    en: "Visit Website",
+                    es: "Visitar sitio web"
+                },
+                url: "https://traducciones-jackboxlol-site.vercel.app/"
+            }
+        ],
         iconUrl: "/images/projects/jackboxesp/icon.png",
         logoUrl: "/images/projects/jackboxesp/logo.png",
         mediaUrls: []
@@ -153,7 +206,15 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
             es: "Compilador de ensamblador desarrollado como parte del Diseño de Compiladores en UNICEN"
         },
         techStack: ["java", "yacc", "masm32"],
-        links: [],
+        links: [
+            {
+                label: {
+                    en: "GitHub Repo",
+                    es: "Repositorio de GitHub"
+                },
+                url: "https://github.com/feliarroyo/Compilador-2022"
+            },
+        ],
         iconUrl: "/images/projects/asmtoexe/icon.png",
         logoUrl: "/images/projects/asmtoexe/logo.webp",
         mediaUrls: []
@@ -172,7 +233,15 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
             es: "Subsección de Planificación de Poker del proyecto AgileTalk"
         },
         techStack: ["unity", "csharp", "rasa"],
-        links: [],
+        links: [
+            {
+                label: {
+                    en: "Visit Website",
+                    es: "Visitar sitio web"
+                },
+                url: "https://agustinschilling.github.io/workers/"
+            }
+        ],
         iconUrl: "/images/projects/pokerplanning/icon.png",
         logoUrl: "/images/projects/pokerplanning/logo.png",
         mediaUrls: []
@@ -192,7 +261,15 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
             es: "Árbol de decisión basado en recomendaciones personales de TV/películas"
         },
         techStack: ["python", "pandas", "scikitlearn"],
-        links: [],
+        links: [
+            {
+                label: {
+                    en: "GitHub Repo",
+                    es: "Repositorio de GitHub"
+                },
+                url: "https://github.com/feliarroyo/arbol-decision-imdb"
+            }
+        ],
         iconUrl: "/images/projects/imdbdecisiontree/icon.png",
         logoUrl: "/images/projects/imdbdecisiontree/logo.png",
         mediaUrls: []
