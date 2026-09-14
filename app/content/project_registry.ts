@@ -174,7 +174,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         },
         blurb: {
             en: "Prompt editor for the Fibbage: Enough About You series",
-            es: "Editor de prompts para la serie Fibbage: Enough About You"
+            es: "Editor de enunciados para la serie Fibbage: Enough About You"
         },
         description: {
             en: [
