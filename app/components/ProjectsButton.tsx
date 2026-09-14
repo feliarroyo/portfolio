@@ -79,7 +79,6 @@ export default function ProjectsButton() {
             <button
                 type="button"
                 aria-label={t.nav.projects}
-                // Added relative to the button to contain the absolutely positioned document
                 className="relative group flex items-center justify-center cursor-pointer bg-transparent border-none p-0 select-none transition-transform"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}

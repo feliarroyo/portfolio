@@ -23,9 +23,11 @@ export default function ProjectDetailOverlay() {
   const title = displayProject
     ? displayProject.title[language as keyof typeof displayProject.title] || displayProject.title.en
     : "";
-  const description = displayProject
-    ? displayProject.description[language as keyof typeof displayProject.description] || displayProject.description.en
-    : "";
+  const descriptionArray = displayProject ? displayProject.description[language as keyof typeof displayProject.description] || displayProject.description.en : [""];
+  const headerBg = displayProject?.theme?.headerBgClass || "bg-slate-100 dark:bg-slate-900";
+
+  // 1. Update how you extract the description:
+
 
   return (
     <div
@@ -53,7 +55,7 @@ export default function ProjectDetailOverlay() {
 
                 {/* Left Column: Logo, Tech Stack, & Links */}
                 <div className="flex flex-col md:w-1/3 shrink-0">
-                  <div className="w-full h-48 bg-slate-100 dark:bg-slate-800 border-4 border-slate-900 dark:border-slate-700 relative p-4 flex items-center justify-center mb-6">
+                  <div className={`w-full h-48 ${headerBg} border-4 border-slate-900 dark:border-slate-700 relative p-4 flex items-center justify-center mb-6`}>
                     <Image
                       src={displayProject.logoUrl}
                       alt={`${title} logo`}
@@ -110,9 +112,16 @@ export default function ProjectDetailOverlay() {
                     {title}
                   </h2>
 
-                  <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-8 whitespace-pre-wrap min-h-37.5">
-                    {description}
-                  </p>
+                  <div className="mb-8 min-h-[150px]">
+                    {descriptionArray.map((paragraph, index) => (
+                      <p
+                        key={index}
+                        className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4"
+                      >
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
                 </div>
 
               </div>
