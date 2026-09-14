@@ -15,8 +15,8 @@ export default function AboutMeButton() {
     
     const { setAboutOpen, isAboutTyping } = useUI();
 
-    const FRAME_WIDTH = 57;
-    const FRAME_HEIGHT = 90;
+    const FRAME_WIDTH = 80;
+    const FRAME_HEIGHT = 120;
     const idleInterval = 400;
     const talkingInterval = 250;
 
@@ -24,7 +24,7 @@ export default function AboutMeButton() {
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setFrame((prev) => (prev >= 1 ? 0 : prev + 1));
+            setFrame((prev) => (prev >= 3 ? 0 : prev + 1));
         }, isTalking ? talkingInterval : idleInterval);
 
         return () => clearInterval(timer);
@@ -50,7 +50,7 @@ export default function AboutMeButton() {
                         height: `${FRAME_HEIGHT}px`,
                         backgroundImage: "url('/images/icons/avatar/avatar-spritesheet.png')",
                         backgroundPosition: `${xPos}px ${yPos}px`,
-                        backgroundSize: `${FRAME_WIDTH * 2}px ${FRAME_HEIGHT * 2}px`, 
+                        backgroundSize: `${FRAME_WIDTH * 4}px ${FRAME_HEIGHT * 2}px`, 
                         imageRendering: "pixelated",
                         transformOrigin: "center"
                     }}
