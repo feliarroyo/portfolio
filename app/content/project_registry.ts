@@ -119,8 +119,8 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         logoUrl: "/images/projects/qualitytrack/logo.png",
         mediaUrls: [],
         theme: {
-            headerBgClass: "bg-pink-200 dark:bg-pink-900",
-            contentBgClass: "bg-blue-50 dark:bg-blue-950"
+            headerBgClass: "bg-emerald-200 dark:bg-emerald-900",
+            contentBgClass: "bg-emerald-50 dark:bg-emerald-950"
         }
     },
     {
