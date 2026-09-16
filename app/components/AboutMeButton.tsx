@@ -18,7 +18,7 @@ export default function AboutMeButton() {
     const FRAME_WIDTH = 80;
     const FRAME_HEIGHT = 120;
     const idleInterval = 400;
-    const talkingInterval = 250;
+    const talkingInterval = 180;
 
     const isTalking = isAboutTyping || hoverState === "talking";
 
