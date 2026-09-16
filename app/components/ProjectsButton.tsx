@@ -28,16 +28,17 @@ export default function ProjectsButton() {
                 setFrame((prev) => {
                     if (prev >= 3) {
                         clearInterval(timer);
+                        // Chest has reached its final open frame
                         setState("opened");
 
+                        // Allow time for the document to shoot upward before opening the overlay
                         setTimeout(() => {
-                            // Open projects page and reset chest
                             setProjectsOpen(true);
                             setTimeout(() => {
                                 setState("idle");
                                 setFrame(0);
-                            }, 500);
-                        }, 250);
+                            }, 200);
+                        }, 300);
 
                         return 3;
                     }
@@ -53,7 +54,6 @@ export default function ProjectsButton() {
     const xPos = -frame * FRAME_SIZE;
     const yPos = -row * FRAME_SIZE;
 
-    // --- Extracted Handlers ---
     const handleMouseEnter = () => {
         if (state === "idle") {
             setState("hover");
@@ -80,16 +80,29 @@ export default function ProjectsButton() {
                 type="button"
                 aria-label={t.nav.projects}
                 className="relative group flex items-center justify-center cursor-pointer bg-transparent border-none p-0 select-none transition-transform"
+                style={{ width: `${FRAME_SIZE}px`, height: `${FRAME_SIZE}px` }}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 onClick={handleClick}
             >
-                {/* Document Sprite (z-0: behind the chest, grows on click)
-                */}
+                {/* 1. CHEST COVER / LID (z-0: Behind document) */}
                 <div
-                    className={`absolute inset-0 m-auto w-8 h-8 pointer-events-none z-0 ${
-                        state === "opening" || state === "opened"
-                            ? "transition-all duration-800 ease-in translate-y-[-120vh] scale-110"
+                    className="absolute inset-0 z-0 pointer-events-none"
+                    style={{
+                        width: `${FRAME_SIZE}px`,
+                        height: `${FRAME_SIZE}px`,
+                        backgroundImage: "url('/images/icons/chest/chest-cover-spritesheet.png')",
+                        backgroundPosition: `${xPos}px ${yPos}px`,
+                        backgroundSize: `${FRAME_SIZE * 4}px ${FRAME_SIZE * 2}px`,
+                        imageRendering: "pixelated",
+                    }}
+                />
+
+                {/* 2. DOCUMENT SPRITE (z-10: Waits until state === 'opened' to launch) */}
+                <div
+                    className={`absolute inset-0 m-auto w-8 h-8 pointer-events-none z-10 ${
+                        state === "opened"
+                            ? "transition-all duration-400 ease-in translate-y-[-120vh] scale-110"
                             : "transition-none translate-y-4 scale-80"
                     }`}
                 >
@@ -104,9 +117,9 @@ export default function ProjectsButton() {
                     />
                 </div>
 
-                {/* The Chest Sprite (z-10 to be infront of document) */}
+                {/* 3. CHEST BASE / BODY (z-20: In front of document) */}
                 <div
-                    className="relative z-10"
+                    className="relative z-20 pointer-events-none"
                     style={{
                         width: `${FRAME_SIZE}px`,
                         height: `${FRAME_SIZE}px`,
