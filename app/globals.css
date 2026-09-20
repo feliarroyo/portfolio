@@ -46,3 +46,24 @@ body {
 .hover-spin:hover {
   animation: continuous-spin 3s linear infinite;
 }
+
+@keyframes infinite-cloud-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-clouds-slow {
+  animation: infinite-cloud-scroll 120s linear infinite;
+}
+
+.animate-clouds-mid {
+  animation: infinite-cloud-scroll 80s linear infinite;
+}
+
+.animate-clouds-fast {
+  animation: infinite-cloud-scroll 50s linear infinite;
+}
