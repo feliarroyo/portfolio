@@ -43,8 +43,8 @@ body {
   }
 }
 
-.hover-spin:hover {
-  animation: continuous-spin 3s linear infinite;
+body:has(#theme-toggle-btn:hover) .theme-sprite {
+  transform: scale(1.15) rotate(12deg);
 }
 
 @keyframes infinite-cloud-scroll {

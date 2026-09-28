@@ -75,6 +75,7 @@ export default function ThemeBackground() {
             height={54}
             unoptimized
             style={{ imageRendering: "pixelated" }}
+            className="theme-sprite transition-transform duration-300"
           />
         </div>
 
@@ -87,6 +88,7 @@ export default function ThemeBackground() {
             height={54}
             unoptimized
             style={{ imageRendering: "pixelated" }}
+            className="theme-sprite transition-transform duration-300"
           />
         </div>
       </div>

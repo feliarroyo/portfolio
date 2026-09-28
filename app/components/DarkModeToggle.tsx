@@ -27,6 +27,7 @@ export default function DarkModeToggle({ className }: DarkModeToggleProps) {
     <div className={`${className}`}>
       <Tooltip position="bottom" text={t.nav.toggleTheme}>
         <button
+          id="theme-toggle-btn"
           onClick={() => setTheme(isDark ? 'light' : 'dark')}
           className="block cursor-pointer relative w-[54px] h-[54px] focus:outline-none bg-transparent border-none"
           aria-label={t.nav.toggleTheme}
