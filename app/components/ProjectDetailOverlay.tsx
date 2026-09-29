@@ -7,6 +7,12 @@ import { ProjectItem } from "../content/project_registry";
 import Image from "next/image";
 import TechBadge from "../components/TechBadge";
 
+// Helper function to identify YouTube URLs and show them as embeds
+const getYouTubeEmbedUrl = (url: string) => {
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
+  return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+};
+
 export default function ProjectDetailOverlay() {
   const { activeProject, setActiveProject } = useUI();
   const { language } = useLanguage();
@@ -26,6 +32,8 @@ export default function ProjectDetailOverlay() {
     : "";
   const descriptionArray = displayProject ? displayProject.description[language as keyof typeof displayProject.description] || displayProject.description.en : [""];
   const headerBg = displayProject?.theme?.headerBgClass || "bg-slate-100 dark:bg-slate-900";
+  const mediaUrls = displayProject?.mediaUrls || [];
+  const [expandedImage, setExpandedImage] = useState<string | null>(null);
 
   // 1. Update how you extract the description:
 
@@ -102,11 +110,85 @@ export default function ProjectDetailOverlay() {
                   )}
                 </div>
 
-                {/* Right Column: Title & Description */}
+                {/* Right Column: Title, Pictures/Videos & Description */}
                 <div className="flex flex-col md:w-2/3">
                   <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 font-pixel">
                     {title}
                   </h2>
+                  {/* Gallery Section */}
+                  {mediaUrls.length > 0 && (
+                    <div className="flex overflow-x-auto gap-4 p-2 snap-x snap-mandatory items-center">
+                      {mediaUrls.map((url, index) => {
+                        const youtubeEmbedUrl = getYouTubeEmbedUrl(url);
+
+                        return youtubeEmbedUrl ? (
+                          /* Video Container: Fixed aspect ratio */
+                          <div
+                            key={index}
+                            className="shrink-0 h-48 md:h-64 aspect-video relative snap-center border-4 border-gray-800 bg-black"
+                          >
+                            <iframe
+                              src={youtubeEmbedUrl}
+                              title={`${displayProject.title} video ${index + 1}`}
+                              className="w-full h-full"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          </div>
+                        ) : (
+                          /* Image Container: Auto width to eliminate black bars */
+                          <div
+                            key={index}
+                            className="shrink-0 h-48 md:h-64 relative snap-center border-4 border-gray-800 bg-black cursor-pointer hover:scale-[1.02] transition-transform"
+                            onClick={() => setExpandedImage(url)}
+                          >
+                            <Image
+                              src={url}
+                              alt={`${displayProject.title} media ${index + 1}`}
+                              width={0}
+                              height={0}
+                              sizes="(max-width: 768px) 100vw, 400px"
+                              className="w-auto h-full object-contain"
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* Full-size Image Lightbox Overlay */}
+                  {expandedImage && (
+                    <div
+                      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 md:p-12 cursor-pointer"
+                      onClick={() => setExpandedImage(null)}
+                    >
+                      {/* Framed Container */}
+                      <div
+                        className="relative bg-[#e6e6e6] dark:bg-gray-800 border-4 border-black dark:border-white p-3 md:p-5 shadow-[8px_8px_0_0_rgba(0,0,0,1)] cursor-default flex flex-col items-center justify-center max-w-[95vw] max-h-[95vh]"
+                        onClick={(e) => e.stopPropagation()} // Prevents closing when clicking inside the frame
+                      >
+                        {/* Chunky Retro Close Button */}
+                        <button
+                          className="absolute -top-5 -right-5 md:-top-6 md:-right-6 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-red-600 text-white font-bold text-xl md:text-2xl border-4 border-black hover:bg-red-500 active:translate-y-1 active:shadow-none shadow-[4px_4px_0_0_rgba(0,0,0,1)] z-10 transition-all"
+                          onClick={() => setExpandedImage(null)}
+                        >
+                          X
+                        </button>
+
+                        {/* Constrained Image */}
+                        <div className="relative flex justify-center items-center max-h-[80vh]">
+                          <Image
+                            src={expandedImage}
+                            alt="Expanded project view"
+                            width={0}
+                            height={0}
+                            sizes="100vw"
+                            className="w-auto h-auto max-w-[85vw] max-h-[80vh] object-contain"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   <div className="mb-8 min-h-[150px]">
                     {descriptionArray.map((paragraph, index) => (
