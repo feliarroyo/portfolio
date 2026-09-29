@@ -5,6 +5,7 @@ import { useUI } from "../context/UIContext";
 import { useLanguage } from "../context/LanguageContext";
 import { ProjectItem } from "../content/project_registry";
 import Image from "next/image";
+import TechBadge from "../components/TechBadge";
 
 export default function ProjectDetailOverlay() {
   const { activeProject, setActiveProject } = useUI();
@@ -68,14 +69,9 @@ export default function ProjectDetailOverlay() {
                     <h4 className="font-bold text-slate-900 dark:text-white mb-3 uppercase tracking-widest font-pixel text-sm border-b-2 border-slate-200 dark:border-slate-700 pb-2">
                       Tech Stack
                     </h4>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 mt-4">
                       {displayProject.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 text-xs font-bold bg-slate-200 dark:bg-slate-700 border-2 border-slate-900 dark:border-slate-500 text-slate-700 dark:text-slate-200 uppercase"
-                        >
-                          {tech}
-                        </span>
+                        <TechBadge key={tech} name={tech} />
                       ))}
                     </div>
                   </div>

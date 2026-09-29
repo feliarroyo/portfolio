@@ -4,6 +4,7 @@ import { useUI } from "../context/UIContext";
 import { PORTFOLIO_PROJECTS } from "../content/project_registry";
 import ProjectCard from "./ProjectCard";
 import { useLanguage } from "../context/LanguageContext";
+import TechBadge from "../components/TechBadge";
 
 export default function ProjectsOverlay() {
   const { isProjectsOpen, setProjectsOpen } = useUI();

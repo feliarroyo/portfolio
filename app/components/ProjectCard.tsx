@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useLanguage } from "../context/LanguageContext";
 import { ProjectItem } from "../content/project_registry";
 import { useUI } from "../context/UIContext";
+import TechBadge from "./TechBadge";
 
 interface ProjectCardProps {
   project: ProjectItem;
@@ -45,14 +46,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </p>
 
         {/* Tech Stack Tags */}
-        <div className="mt-auto pt-4 flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mt-4">
           {project.techStack.map((tech) => (
-            <span
-              key={tech}
-              className="px-2 py-1 text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded"
-            >
-              {tech}
-            </span>
+            <TechBadge key={tech} name={tech} />
           ))}
         </div>
       </div>
