@@ -80,7 +80,11 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/charades/icon.png",
         logoUrl: "/images/projects/charades/logo.png",
-        mediaUrls: [],
+        mediaUrls: [
+            "/images/projects/charades/image1.gif",
+            "/images/projects/charades/image2.gif",
+            "/images/projects/charades/image3.gif"
+        ],
         theme: {
             headerBgClass: "bg-blue-300 dark:bg-blue-900",
             contentBgClass: "bg-blue-50 dark:bg-blue-950"
@@ -117,7 +121,12 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/qualitytrack/icon.png",
         logoUrl: "/images/projects/qualitytrack/logo.png",
-        mediaUrls: [],
+        mediaUrls: [
+            "/images/projects/qualitytrack/image1.png",
+            "/images/projects/qualitytrack/image2.png",
+            "/images/projects/qualitytrack/image3.png",
+            "/images/projects/qualitytrack/image4.png",
+        ],
         theme: {
             headerBgClass: "bg-emerald-200 dark:bg-emerald-900",
             contentBgClass: "bg-emerald-50 dark:bg-emerald-950"
@@ -161,7 +170,12 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/mhgame/icon.png",
         logoUrl: "/images/projects/mhgame/logo.png",
-        mediaUrls: [],
+        mediaUrls: [
+            "/images/projects/mhgame/image1.jpg",
+            "/images/projects/mhgame/image2.png",
+            "/images/projects/mhgame/image3.jpg",
+            "/images/projects/mhgame/image4.jpg",
+        ],
         theme: {
             headerBgClass: "bg-purple-200 dark:bg-purple-900",
             contentBgClass: "bg-blue-50 dark:bg-blue-950"
@@ -205,7 +219,13 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/eaygenerator/icon.png",
         logoUrl: "/images/projects/eaygenerator/logo.webp",
-        mediaUrls: [],
+        mediaUrls: [
+            "/images/projects/eaygenerator/image1.webp",
+            "/images/projects/eaygenerator/image2.png",
+            "/images/projects/eaygenerator/image3.png",
+            "/images/projects/eaygenerator/image4.png",
+            "/images/projects/eaygenerator/image5.png",
+        ],
         theme: {
             headerBgClass: "bg-yellow-200 dark:bg-yellow-900",
             contentBgClass: "bg-blue-50 dark:bg-blue-950"
@@ -250,7 +270,13 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/jackboxesp/icon.png",
         logoUrl: "/images/projects/jackboxesp/logo.png",
-        mediaUrls: [],
+        mediaUrls: [
+            "/images/projects/jackboxesp/image1.png",
+            "/images/projects/jackboxesp/image2.png",
+            "/images/projects/jackboxesp/image3.png",
+            "/images/projects/jackboxesp/image4.png",
+            "/images/projects/jackboxesp/image5.png"
+        ],
         theme: {
             headerBgClass: "bg-cyan-200 dark:bg-cyan-900",
             contentBgClass: "bg-blue-50 dark:bg-blue-950"
@@ -325,7 +351,13 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/pokerplanning/icon.png",
         logoUrl: "/images/projects/pokerplanning/logo.png",
-        mediaUrls: [],
+        mediaUrls: [
+            "/images/projects/pokerplanning/image1.png",
+            "/images/projects/pokerplanning/image2.png",
+            "/images/projects/pokerplanning/image3.png",
+            "/images/projects/pokerplanning/image4.png",
+            "https://youtu.be/zX1LM0P3dis"
+        ],
         theme: {
             headerBgClass: "bg-violet-200 dark:bg-violet-900",
             contentBgClass: "bg-blue-50 dark:bg-blue-950"
@@ -366,7 +398,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         iconUrl: "/images/projects/imdbdecisiontree/icon.png",
         logoUrl: "/images/projects/imdbdecisiontree/logo.png",
         mediaUrls: [
-            "https://youtu.be/Q9m84_aDgRY?si=NVk-sZXUIqfQlD0J"
+            "https://youtu.be/Q9m84_aDgRY"
         ],
         theme: {
             headerBgClass: "bg-orange-200 dark:bg-orange-900",
