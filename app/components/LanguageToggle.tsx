@@ -17,9 +17,11 @@ export default function LanguageToggle({ className }: LanguageToggleProps) {
   };
 
   return (
-    <Tooltip text={t.nav.language} position="right">
-      <button onClick={toggleLanguage} >
+    
+      
         <div className={`flex flex-col items-center justify-center text-center ${className}`}>
+          <button onClick={toggleLanguage} >
+          <Tooltip text={t.nav.language} position="right">
           <Image
             src="/images/icons/lang_toggle.png"
             alt={t.nav.language}
@@ -28,13 +30,13 @@ export default function LanguageToggle({ className }: LanguageToggleProps) {
             unoptimized
             style={{ imageRendering: 'pixelated' }}
           />
+          </Tooltip>
+          </button>
           <div className="w-24 text-center mt-1">
             <span className="text-md block">
               {language === "en" ? "English" : "Español"}
             </span>
           </div>
         </div>
-      </button>
-    </Tooltip>
   );
 }
