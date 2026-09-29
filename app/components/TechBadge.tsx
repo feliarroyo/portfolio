@@ -1,7 +1,7 @@
 const techColorMap: Record<string, string> = {
   'java': 'bg-orange-500 text-white',
   'firebase': 'bg-orange-500 text-white',
-  'unity': 'bg-gray-800 text-white',
+  'unity': 'bg-gray-700 text-white',
   'csharp': 'bg-purple-500 text-white',
   'rasa': 'bg-red-500 text-white',
   'python': 'bg-yellow-500 text-black',
