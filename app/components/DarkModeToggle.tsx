@@ -25,7 +25,7 @@ export default function DarkModeToggle({ className }: DarkModeToggleProps) {
 
   return (
     <div className={`${className}`}>
-      <Tooltip position="bottom" text={t.nav.toggleTheme}>
+      <Tooltip position="bottom" text={t.nav.toggleTheme} forceTooltipOnMobile={true}>
         <button
           id="theme-toggle-btn"
           onClick={() => setTheme(isDark ? 'light' : 'dark')}

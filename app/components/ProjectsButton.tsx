@@ -91,7 +91,7 @@ export default function ProjectsButton() {
     };
 
     return (
-        <Tooltip text={t.nav.projects} position="top">
+        <Tooltip text={t.nav.projects} position="top" forceTooltipOnMobile={true}>
             <button
                 type="button"
                 aria-label={t.nav.projects}

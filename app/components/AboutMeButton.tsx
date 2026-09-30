@@ -35,7 +35,7 @@ export default function AboutMeButton() {
     const yPos = -row * FRAME_HEIGHT;
 
     return (
-        <Tooltip text={t.nav.aboutMe} position="top">
+        <Tooltip text={t.nav.aboutMe} position="top" forceTooltipOnMobile={true}>
             <button
                 type="button"
                 aria-label={t.nav.aboutMe}
