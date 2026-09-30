@@ -91,7 +91,7 @@ export default function ProjectsButton() {
     };
 
     return (
-        <Tooltip text={t.nav.projects} position="bottom">
+        <Tooltip text={t.nav.projects} position="top">
             <button
                 type="button"
                 aria-label={t.nav.projects}

@@ -29,7 +29,7 @@ export default function CVButton() {
     const xPos = -frame * FRAME_SIZE;
 
     return (
-        <Tooltip text={t.nav.cv} position="bottom">
+        <Tooltip text={t.nav.cv} position="top">
             <a
                 href="/cv.pdf"
                 target="_blank"
