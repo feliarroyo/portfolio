@@ -54,5 +54,7 @@ This portfolio uses the following assets, which are credited to their respective
 - Mail, Phone, GitHub and LinkedIn button sprites: [Pixel Art Social Media Icon](https://joi3.itch.io/pixel-art-social-media-icon) by [JOI3](https://joi3.itch.io/)
 - CV, Earth, Sun and Moon sprites: [320 Pixel Emojis](https://joi3.itch.io/joi3s-free-pixel-art-emoji-icon) by [JOI3](https://joi3.itch.io/)
 - Background sprites: [Free Sky Backgrounds](https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set) by [CraftPix.net](https://craftpix.net/)
+- Tooltip, close/back button sprites: [Complete UI Essential Pack](https://crusenho.itch.io/complete-ui-essential-pack)
 - (Not yet used): [Justin's 16x16 Icons](https://zeromatrix.itch.io/rpgiab-icons)
-- (Not yet used): [Complete UI Essential Pack](https://crusenho.itch.io/complete-ui-essential-pack)
+
+Some of the assets listed were modified or expanded (e.g. adding animation) to fit the requirements of the website, always following the associated license.
