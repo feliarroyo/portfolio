@@ -6,6 +6,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { ProjectItem } from "../content/project_registry";
 import Image from "next/image";
 import TechBadge from "../components/TechBadge";
+import OverlayButton from "./OverlayButton";
 
 // Helper function to identify YouTube URLs and show them as embeds
 const getYouTubeEmbedUrl = (url: string) => {
@@ -47,15 +48,12 @@ export default function ProjectDetailOverlay() {
         {displayProject && (
           <>
             {/* Back Button */}
-            <button
+            <OverlayButton
+              variant="back"
               onClick={() => setActiveProject(null)}
-              className="absolute -top-14 left-0 md:-left-16 md:top-0 z-50 flex items-center justify-center w-10 h-10 bg-white dark:bg-slate-800 border-4 border-slate-900 dark:border-slate-300 hover:scale-110 active:scale-95 transition-transform cursor-pointer shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]"
-              aria-label="Back to Projects"
-            >
-              <span className="text-xl font-bold font-pixel text-slate-900 dark:text-white">
-                {"<"}
-              </span>
-            </button>
+              className="-top-14 left-0 md:-left-16 md:top-0"
+              ariaLabel="Back to Projects"
+            />
 
             {/* Pixel Paper Background */}
             <div className="w-full h-full bg-[#fdfaf3] dark:bg-slate-900 overflow-y-auto border-4 border-slate-900 dark:border-slate-500 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[12px_12px_0px_0px_rgba(0,0,0,0.8)] p-6 md:p-12">
@@ -167,13 +165,13 @@ export default function ProjectDetailOverlay() {
                         className="relative bg-[#e6e6e6] dark:bg-gray-800 border-4 border-black dark:border-white p-3 md:p-5 shadow-[8px_8px_0_0_rgba(0,0,0,1)] cursor-default flex flex-col items-center justify-center max-w-[95vw] max-h-[95vh]"
                         onClick={(e) => e.stopPropagation()} // Prevents closing when clicking inside the frame
                       >
-                        {/* Chunky Retro Close Button */}
-                        <button
-                          className="absolute -top-5 -right-5 md:-top-6 md:-right-6 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-red-600 text-white font-bold text-xl md:text-2xl border-4 border-black hover:bg-red-500 active:translate-y-1 active:shadow-none shadow-[4px_4px_0_0_rgba(0,0,0,1)] z-10 transition-all"
+                        {/* Close Button */}
+                        <OverlayButton
+                          variant="close"
                           onClick={() => setExpandedImage(null)}
-                        >
-                          X
-                        </button>
+                          className="-top-5 -right-5 md:-top-6 md:-right-6 md:w-12 md:h-12 z-10"
+                          ariaLabel="Close Image"
+                        />
 
                         {/* Constrained Image */}
                         <div className="relative flex justify-center items-center max-h-[80vh]">

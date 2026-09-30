@@ -3,11 +3,12 @@
 import { useState, useEffect } from "react";
 import { useUI } from "../context/UIContext";
 import { useLanguage } from "../context/LanguageContext";
+import OverlayButton from "./OverlayButton";
 
 export default function AboutOverlay() {
     const { isAboutOpen, setAboutOpen, isAboutTyping: isTyping, setAboutTyping: setIsTyping } = useUI();
     const { t } = useLanguage();
-    
+
     const [displayedText, setDisplayedText] = useState("");
     const fullText = t.text.aboutMeContent;
 
@@ -18,47 +19,45 @@ export default function AboutOverlay() {
 
     // Typewriter effect
     useEffect(() => {
-        if (!isTyping) return; 
+        if (!isTyping) return;
 
         let currentIndex = 0;
-        
+
         const typingTimer = setInterval(() => {
             setDisplayedText(fullText.slice(0, currentIndex + 1));
             currentIndex++;
-            
+
             if (currentIndex >= fullText.length) {
                 clearInterval(typingTimer);
                 setIsTyping(false);
             }
-        }, 40); 
+        }, 40);
 
         return () => clearInterval(typingTimer);
     }, [isTyping, fullText, setIsTyping]);
 
     const handleSkip = () => {
         if (isTyping) {
-            setIsTyping(false); 
-            setDisplayedText(fullText); 
+            setIsTyping(false);
+            setDisplayedText(fullText);
         }
     };
 
     return (
         <div
-            className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 transition-all duration-500 ease-in-out ${
-                isAboutOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"
-            }`}
+            className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 transition-all duration-500 ease-in-out ${isAboutOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"
+                }`}
         >
             <div className="relative w-full max-w-4xl flex flex-col md:flex-row items-center md:items-start gap-8">
-                
-                <button
-                    onClick={() => setAboutOpen(false)}
-                    className="absolute -top-16 right-0 md:-left-16 md:top-0 z-50 flex items-center justify-center w-10 h-10 bg-white dark:bg-slate-800 border-4 border-slate-900 dark:border-slate-300 hover:scale-110 active:scale-95 transition-transform cursor-pointer shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]"
-                    aria-label="Close About Me"
-                >
-                    <span className="text-xl font-bold font-pixel text-slate-900 dark:text-white">X</span>
-                </button>
 
-                <div 
+                <OverlayButton
+                    variant="close"
+                    onClick={() => setAboutOpen(false)}
+                    className="-top-16 right-0 md:-left-16 md:top-0"
+                    ariaLabel="Close About Me"
+                />
+
+                <div
                     onClick={handleSkip}
                     className="w-full bg-[#fdfaf3] dark:bg-slate-900 border-4 border-slate-900 dark:border-slate-500 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[12px_12px_0px_0px_rgba(0,0,0,0.8)] p-6 md:p-10 flex flex-col cursor-pointer"
                 >
