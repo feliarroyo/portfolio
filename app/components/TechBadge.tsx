@@ -6,7 +6,7 @@ const techColorMap: Record<string, string> = {
   'rasa': 'bg-red-500 text-white',
   'python': 'bg-yellow-500 text-black',
   'pyside6': 'bg-cyan-400 text-black',
-  'postgresql': 'bg-blue-700 text-white',
+  'postgresql': 'bg-blue-800 text-white',
   'vuejs': 'bg-green-400 text-black',
   'vercel': 'bg-green-800 text-white',
   'springboot': 'bg-green-500 text-white',
@@ -18,6 +18,10 @@ const techColorMap: Record<string, string> = {
   'masm32': 'bg-blue-800 text-white',
   'pandas': 'bg-purple-600 text-white',
   'scikitlearn': 'bg-blue-400 text-black',
+  'docker': 'bg-blue-700 text-white',
+  'render': 'bg-purple-400 text-black',
+  'neon': 'bg-emerald-400 text-black',
+
   // Fallback style for undefined technologies
   default: 'bg-gray-200 text-gray-800 border-gray-400', 
 };

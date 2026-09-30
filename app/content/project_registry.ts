@@ -109,7 +109,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
                 "En conjunto a todo el equipo, se definieron los requerimientos y funcionalidades de la aplicación, se diseñó la arquitectura del sistema y se implementaron las funcionalidades de back-end utilizando Spring Boot y PostgreSQL. Este sistema luego fue deployeado usando Render para el backend y Neon para la base de datos."
             ]
         },
-        techStack: ["java", "springboot", "postgresql"],
+        techStack: ["java", "springboot", "postgresql", "docker", "render", "neon"],
         links: [
             {
                 label: {
