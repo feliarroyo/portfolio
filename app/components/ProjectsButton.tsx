@@ -11,6 +11,7 @@ type ChestState = "idle" | "hover" | "opening" | "opened";
 export default function ProjectsButton() {
     const [state, setState] = useState<ChestState>("idle");
     const [frame, setFrame] = useState(0);
+    const [hasHover, setHasHover] = useState(true);
     const { setProjectsOpen } = useUI();
     const { t } = useLanguage();
 
@@ -19,10 +20,13 @@ export default function ProjectsButton() {
     useEffect(() => {
         let timer: NodeJS.Timeout;
 
-        if (state === "hover") {
+        // loops on devices with no hover state (eg. mobile) or when hovered
+        const shouldLoop = state === "hover" || (state === "idle" && !hasHover);
+
+        if (shouldLoop) {
             timer = setInterval(() => {
                 setFrame((prev) => (prev >= 3 ? 0 : prev + 1));
-            }, 150);
+            }, 180);
         } else if (state === "opening") {
             timer = setInterval(() => {
                 setFrame((prev) => {
@@ -48,7 +52,19 @@ export default function ProjectsButton() {
         }
 
         return () => clearInterval(timer);
-    }, [state, setProjectsOpen]);
+    }, [state, hasHover, setProjectsOpen]);
+
+    useEffect(() => {
+        // Check if the device's primary input mechanism supports hover (desktop)
+        const mediaQuery = window.matchMedia("(hover: hover)");
+        setHasHover(mediaQuery.matches);
+
+        // Listen for changes (e.g., rotating a 2-in-1 laptop into tablet mode)
+        const handler = (e: MediaQueryListEvent) => setHasHover(e.matches);
+        mediaQuery.addEventListener("change", handler);
+
+        return () => mediaQuery.removeEventListener("change", handler);
+    }, []);
 
     const row = state === "opening" || state === "opened" ? 1 : 0;
     const xPos = -frame * FRAME_SIZE;
@@ -100,11 +116,10 @@ export default function ProjectsButton() {
 
                 {/* 2. DOCUMENT SPRITE (z-10: Waits until state === 'opened' to launch) */}
                 <div
-                    className={`absolute inset-0 m-auto w-8 h-8 pointer-events-none z-10 ${
-                        state === "opened"
+                    className={`absolute inset-0 m-auto w-8 h-8 pointer-events-none z-10 ${state === "opened"
                             ? "transition-all duration-400 ease-in translate-y-[-120vh] scale-110"
                             : "transition-none translate-y-4 scale-80"
-                    }`}
+                        }`}
                 >
                     <Image
                         src="/images/icons/chest/documents.png"
