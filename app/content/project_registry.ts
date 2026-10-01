@@ -120,8 +120,9 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
             },
         ],
         iconUrl: "/images/projects/qualitytrack/icon.png",
-        logoUrl: "/images/projects/qualitytrack/logo.png",
+        logoUrl: "/images/projects/qualitytrack/logo.webp",
         mediaUrls: [
+            "https://youtu.be/yDTLcFNr2KM",
             "/images/projects/qualitytrack/image1.png",
             "/images/projects/qualitytrack/image2.png",
             "/images/projects/qualitytrack/image3.png",
