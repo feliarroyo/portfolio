@@ -37,7 +37,7 @@ export default function CVButton() {
         setHasHover(mediaQuery.matches);
 
         // Listen for changes (e.g., rotating a 2-in-1 laptop into tablet mode)
-        const handler = (e) => setHasHover(e.matches);
+        const handler = (e: MediaQueryListEvent) => setHasHover(e.matches);
         mediaQuery.addEventListener("change", handler);
 
         return () => mediaQuery.removeEventListener("change", handler);
