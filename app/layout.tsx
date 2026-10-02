@@ -5,8 +5,6 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { UIProvider } from "./context/UIContext";
 import ProjectsOverlay from "./components/ProjectsOverlay";
-import DarkModeToggle from "./components/DarkModeToggle";
-import ThemeBackground from "./components/ThemeBackground";
 import AboutOverlay from "./components/AboutMeOverlay";
 import ProjectDetailOverlay from "./components/ProjectDetailOverlay";
 
