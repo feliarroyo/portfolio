@@ -91,7 +91,7 @@ export default function ProjectsButton() {
     };
 
     return (
-        <Tooltip text={t.nav.projects} position="top" forceTooltipOnMobile={true}>
+        <Tooltip text={t.nav.projects} position="top" forceTooltipOnMobile={true} tooltipClassName="translate-y-4">
             <button
                 type="button"
                 aria-label={t.nav.projects}

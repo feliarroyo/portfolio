@@ -13,9 +13,10 @@ interface TooltipProps {
     | "bottom-right" 
     | "bottom-left";
   forceTooltipOnMobile?: boolean;
+  tooltipClassName?: string;
 }
 
-export default function Tooltip({ text, children, position = "top", forceTooltipOnMobile = false }: TooltipProps) {
+export default function Tooltip({ text, children, position = "top", forceTooltipOnMobile = false, tooltipClassName = "" }: TooltipProps) {
   
   const positionClasses = {
     top: "bottom-full left-1/2 -translate-x-1/2 mb-2 flex-col",
@@ -76,7 +77,7 @@ export default function Tooltip({ text, children, position = "top", forceTooltip
       {children}
 
       <div 
-        className={`absolute hidden ${forceTooltipOnMobile ? '[@media(hover:none)]:flex' : ''} group-hover:flex items-center justify-center pointer-events-none z-50 ${positionClasses[position]}`}
+        className={`absolute hidden ${forceTooltipOnMobile ? '[@media(hover:none)]:flex' : ''} group-hover:flex items-center justify-center pointer-events-none z-50 ${positionClasses[position] } ${tooltipClassName}`}
       >
         {(isBottom || isRight) && renderArrow()}
         
