@@ -8,23 +8,40 @@ export default function CVButton() {
     const { t } = useLanguage();
     const [isHovered, setIsHovered] = useState(false);
     const [frame, setFrame] = useState(0);
+    const [hasHover, setHasHover] = useState(true);
 
     const FRAME_SIZE = 64;
     const TOTAL_FRAMES = 5;
     const ANIMATION_INTERVAL = 200;
 
     useEffect(() => {
-        if (!isHovered) {
-            setFrame(0);
-            return;
+        let timer: NodeJS.Timeout;
+
+        // Loops on devices with no hover state (eg. mobile) or when hovered
+        const shouldLoop = isHovered || (!isHovered && !hasHover);
+
+        if (shouldLoop) {
+            timer = setInterval(() => {
+                setFrame((prev) => (prev >= TOTAL_FRAMES - 1 ? 0 : prev + 1));
+            }, ANIMATION_INTERVAL);
+        } else {
+            setFrame(0); // Reset frame when it shouldn't loop
         }
 
-        const timer = setInterval(() => {
-            setFrame((prev) => (prev >= TOTAL_FRAMES - 1 ? 0 : prev + 1));
-        }, ANIMATION_INTERVAL);
-
         return () => clearInterval(timer);
-    }, [isHovered]);
+    }, [isHovered, hasHover]);
+
+    useEffect(() => {
+        // Check if the device's primary input mechanism supports hover (desktop)
+        const mediaQuery = window.matchMedia("(hover: hover)");
+        setHasHover(mediaQuery.matches);
+
+        // Listen for changes (e.g., rotating a 2-in-1 laptop into tablet mode)
+        const handler = (e) => setHasHover(e.matches);
+        mediaQuery.addEventListener("change", handler);
+
+        return () => mediaQuery.removeEventListener("change", handler);
+    }, []);
 
     const xPos = -frame * FRAME_SIZE;
 
