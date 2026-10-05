@@ -118,6 +118,20 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
                 },
                 url: "https://github.com/No-Country-simulation/S08-26-equipo04"
             },
+            {
+                label: {
+                    en: "App Deploy",
+                    es: "Despliegue de aplicación"
+                },
+                url: "https://qualitytrack-six.vercel.app/"
+            },
+            {
+                label: {
+                    en: "Platform Showcase",
+                    es: "Showcase en la plataforma"
+                },
+                url: "https://nocountry.tech/showcase/simulacion-laboral-agosto-2026/equipo-4"
+            }
         ],
         iconUrl: "/images/projects/qualitytrack/icon.png",
         logoUrl: "/images/projects/qualitytrack/logo.webp",
