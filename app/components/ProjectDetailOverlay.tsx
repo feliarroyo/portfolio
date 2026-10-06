@@ -41,7 +41,7 @@ export default function ProjectDetailOverlay() {
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex justify-center p-4 sm:p-8 pt-16 sm:pt-12 transition-transform duration-500 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+      className={`fixed inset-0 z-60 flex justify-center p-4 sm:p-8 pt-28 sm:pt-28 transition-transform duration-500 ease-in-out ${isOpen ? "translate-y-0" : "-translate-y-full"
         }`}
     >
       <div className="relative w-full max-w-5xl h-full flex flex-col">

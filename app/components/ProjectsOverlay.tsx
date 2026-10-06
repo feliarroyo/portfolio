@@ -4,7 +4,6 @@ import { useUI } from "../context/UIContext";
 import { PORTFOLIO_PROJECTS } from "../content/project_registry";
 import ProjectCard from "./ProjectCard";
 import { useLanguage } from "../context/LanguageContext";
-import TechBadge from "../components/TechBadge";
 import OverlayButton from "./OverlayButton";
 
 export default function ProjectsOverlay() {
@@ -14,7 +13,7 @@ export default function ProjectsOverlay() {
   return (
     <div
       // Sliding with padding to not touch the top/bottom of the screen
-      className={`fixed inset-0 z-50 flex justify-center p-4 sm:p-8 pt-16 sm:pt-12 transition-transform duration-500 ease-in-out ${isProjectsOpen ? "translate-y-0" : "-translate-y-full"
+      className={`fixed inset-0 z-50 flex justify-center p-4 sm:p-8 pt-28 sm:pt-28 transition-transform duration-500 ease-in-out ${isProjectsOpen ? "translate-y-0" : "-translate-y-full"
         }`}
     >
 

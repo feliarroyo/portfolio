@@ -20,10 +20,10 @@ export default function Home() {
     <div className="flex flex-col min-h-screen font-sans">
       <ThemeBackground />
       {/* TOP ROW: config icons and social media links */}
-      <header className="grid grid-cols-3 w-full items-start p-4 sm:p-8">
-        <div className="flex justify-start"><LanguageToggle /></div>
-        <div className="flex justify-center"><DarkModeToggle /></div>
-        <div className="flex justify-end"><SocialMediaIcons /></div>
+      <header className="relative z-60 pointer-events-none grid grid-cols-3 w-full items-start p-4 sm:p-8">
+        <div className="flex justify-start pointer-events-auto"><LanguageToggle /></div>
+        <div className="flex justify-center pointer-events-auto"><DarkModeToggle /></div>
+        <div className="flex justify-end pointer-events-auto"><SocialMediaIcons /></div>
       </header>
 
       {/* MIDDLE ROW: flex-grow pushes the header up and footer down */}
