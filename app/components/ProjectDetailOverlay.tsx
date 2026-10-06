@@ -51,7 +51,7 @@ export default function ProjectDetailOverlay() {
             <OverlayButton
               variant="back"
               onClick={() => setActiveProject(null)}
-              className="-top-14 left-0 md:-left-16 md:top-0"
+              className="-top-16 right-0 md:-left-16 md:top-0"
               ariaLabel="Back to Projects"
             />
 
@@ -157,7 +157,7 @@ export default function ProjectDetailOverlay() {
                   {/* Full-size Image Lightbox Overlay */}
                   {expandedImage && (
                     <div
-                      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 md:p-12 cursor-pointer"
+                      className="fixed inset-0 z-100 flex items-center justify-center bg-black/80 p-4 md:p-12 cursor-pointer"
                       onClick={() => setExpandedImage(null)}
                     >
                       {/* Framed Container */}
