@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useUI } from "../context/UIContext";
 import { useLanguage } from "../context/LanguageContext";
-import { ProjectItem } from "../content/project_registry";
 import Image from "next/image";
 import TechBadge from "../components/TechBadge";
 import OverlayButton from "./OverlayButton";
@@ -18,13 +17,17 @@ export default function ProjectDetailOverlay() {
   const { activeProject, setActiveProject } = useUI();
   const { language } = useLanguage();
 
-  const [displayProject, setDisplayProject] = useState<ProjectItem | null>(null);
+  const [prevActiveProject, setPrevActiveProject] = useState(activeProject);
+  const [displayProject, setDisplayProject] = useState(activeProject);
 
-  useEffect(() => {
-    if (activeProject) {
+  if (activeProject !== prevActiveProject) {
+    setPrevActiveProject(activeProject);
+
+    // Update the display if there is a new project. 
+    if (activeProject !== null) {
       setDisplayProject(activeProject);
     }
-  }, [activeProject]);
+  }
 
   const isOpen = activeProject !== null;
 
@@ -190,7 +193,7 @@ export default function ProjectDetailOverlay() {
                     </div>
                   )}
 
-                  <div className="mb-8 min-h-[150px] mt-6">
+                  <div className="mb-8 min-h-37.5 mt-6">
                     {descriptionArray.map((paragraph, index) => (
                       <p
                         key={index}

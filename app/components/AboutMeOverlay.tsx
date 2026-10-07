@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useUI } from "../context/UIContext";
 import { useLanguage } from "../context/LanguageContext";
 import OverlayButton from "./OverlayButton";
@@ -12,10 +12,9 @@ export default function AboutOverlay() {
     const { t } = useLanguage();
 
     const [activeTopic, setActiveTopic] = useState<Topic>("intro");
-    const [displayedText, setDisplayedText] = useState("");
-
+    const [charCount, setCharCount] = useState(0);
     const defaultSpeed = 30;
-    const speedRef = useRef(defaultSpeed);
+    const [typingSpeed, setTypingSpeed] = useState<number>(defaultSpeed);
 
     const topicContent: Record<Topic, string> = {
         intro: t.text.aboutMeContent,
@@ -24,63 +23,49 @@ export default function AboutOverlay() {
     };
 
     const fullText = topicContent[activeTopic];
+    const displayedText = isTyping ? fullText.slice(0, charCount) : fullText;
 
-    // Reset when opening/closing
-    useEffect(() => {
+    const [prevIsOpen, setPrevIsOpen] = useState(isAboutOpen);
+    if (isAboutOpen !== prevIsOpen) {
+        setPrevIsOpen(isAboutOpen);
         if (isAboutOpen) {
-            speedRef.current = defaultSpeed; // Reset speed
+            setTypingSpeed(defaultSpeed);
             setActiveTopic("intro");
+            setCharCount(0);
             setIsTyping(true);
-            setDisplayedText(""); // Clear text for fresh start
         } else {
             setIsTyping(false);
         }
-    }, [isAboutOpen, setIsTyping]);
+    }
 
-    // Typewriter effect
     useEffect(() => {
-        if (!isTyping) return;
+        if (!isTyping || !isAboutOpen) return;
 
-        let currentIndex = 0;
-        setDisplayedText(""); // Clear text immediately when typing starts
-        let timeoutId: NodeJS.Timeout;
+        if (charCount >= fullText.length) {
+            setIsTyping(false);
+            return;
+        }
 
-        const typeNextChar = () => {
-            setDisplayedText(fullText.slice(0, currentIndex + 1));
-            currentIndex++;
-
-            if (currentIndex >= fullText.length) {
-                setIsTyping(false);
-            } else {
-                timeoutId = setTimeout(typeNextChar, speedRef.current);
-            }
-        };
-
-        timeoutId = setTimeout(typeNextChar, speedRef.current);
+        const timeoutId = setTimeout(() => {
+            setCharCount((prev) => prev + 1);
+        }, typingSpeed);
 
         return () => clearTimeout(timeoutId);
-    }, [isTyping, fullText, setIsTyping]);
-
-    // Sync displayed text when the language changes after typing has finished
-    useEffect(() => {
-        if (isAboutOpen && !isTyping) {
-            setDisplayedText(fullText);
-        }
-    }, [fullText, isAboutOpen, isTyping]);
+    }, [isTyping, isAboutOpen, charCount, fullText.length, typingSpeed, setIsTyping]);
 
     const handleSkip = () => {
         if (isTyping) {
-            // Dramatically lower the delay to fast-forward the rest of the text
-            speedRef.current = 2;
+            setTypingSpeed(2);
         }
     };
 
     const handleTopicChange = (e: React.MouseEvent, topic: Topic) => {
-        e.stopPropagation(); // Prevents the click from triggering handleSkip on the parent container
+        e.stopPropagation();
         if (activeTopic === topic) return;
 
-        speedRef.current = defaultSpeed; // Reset back to default speed for the new topic
+        setTypingSpeed(defaultSpeed);
         setActiveTopic(topic);
+        setCharCount(0);
         setIsTyping(true);
     };
 
@@ -114,8 +99,8 @@ export default function AboutOverlay() {
                         <button
                             onClick={(e) => handleTopicChange(e, "intro")}
                             className={`px-4 py-2 font-bold uppercase tracking-wider text-sm transition-colors border-2 ${activeTopic === "intro"
-                                    ? "bg-slate-900 text-white border-slate-900 dark:bg-slate-200 dark:text-slate-900 dark:border-slate-200"
-                                    : "bg-transparent text-slate-700 border-slate-700 hover:bg-slate-200 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800"
+                                ? "bg-slate-900 text-white border-slate-900 dark:bg-slate-200 dark:text-slate-900 dark:border-slate-200"
+                                : "bg-transparent text-slate-700 border-slate-700 hover:bg-slate-200 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800"
                                 }`}
                         >
                             {t.nav.intro}
@@ -123,8 +108,8 @@ export default function AboutOverlay() {
                         <button
                             onClick={(e) => handleTopicChange(e, "tech")}
                             className={`px-4 py-2 font-bold uppercase tracking-wider text-sm transition-colors border-2 ${activeTopic === "tech"
-                                    ? "bg-slate-900 text-white border-slate-900 dark:bg-slate-200 dark:text-slate-900 dark:border-slate-200"
-                                    : "bg-transparent text-slate-700 border-slate-700 hover:bg-slate-200 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800"
+                                ? "bg-slate-900 text-white border-slate-900 dark:bg-slate-200 dark:text-slate-900 dark:border-slate-200"
+                                : "bg-transparent text-slate-700 border-slate-700 hover:bg-slate-200 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800"
                                 }`}
                         >
                             {t.nav.techStack}
@@ -132,8 +117,8 @@ export default function AboutOverlay() {
                         <button
                             onClick={(e) => handleTopicChange(e, "education")}
                             className={`px-4 py-2 font-bold uppercase tracking-wider text-sm transition-colors border-2 ${activeTopic === "education"
-                                    ? "bg-slate-900 text-white border-slate-900 dark:bg-slate-200 dark:text-slate-900 dark:border-slate-200"
-                                    : "bg-transparent text-slate-700 border-slate-700 hover:bg-slate-200 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800"
+                                ? "bg-slate-900 text-white border-slate-900 dark:bg-slate-200 dark:text-slate-900 dark:border-slate-200"
+                                : "bg-transparent text-slate-700 border-slate-700 hover:bg-slate-200 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800"
                                 }`}
                         >
                             {t.nav.education}

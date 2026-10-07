@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useSyncExternalStore } from 'react';
 import { useTheme } from 'next-themes';
 import Tooltip from './Tooltip';
 import { useLanguage } from '../context/LanguageContext';
@@ -9,13 +9,15 @@ interface DarkModeToggleProps {
 }
 
 export default function DarkModeToggle({ className }: DarkModeToggleProps) {
-  const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
   const { t } = useLanguage();
+
+  const mounted = useSyncExternalStore(
+    () => () => { }, // empty subscribe
+    () => true,     // client snapshot
+    () => false     // server snapshot
+  );
   
-  useEffect(() => {
-    setMounted(true);
-  }, []);
   if (!mounted) {
     return null;
   }
@@ -29,7 +31,7 @@ export default function DarkModeToggle({ className }: DarkModeToggleProps) {
         <button
           id="theme-toggle-btn"
           onClick={() => setTheme(isDark ? 'light' : 'dark')}
-          className="block cursor-pointer relative w-[54px] h-[54px] focus:outline-none bg-transparent border-none"
+          className="block cursor-pointer relative w-13.5 h-13.5 focus:outline-none bg-transparent border-none"
           aria-label={t.nav.toggleTheme}
         />
       </Tooltip>
