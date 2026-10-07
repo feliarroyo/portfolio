@@ -36,9 +36,6 @@ export default function ProjectDetailOverlay() {
   const mediaUrls = displayProject?.mediaUrls || [];
   const [expandedImage, setExpandedImage] = useState<string | null>(null);
 
-  // 1. Update how you extract the description:
-
-
   return (
     <div
       className={`fixed inset-0 z-60 flex justify-center p-4 sm:p-8 pt-28 sm:pt-28 transition-transform duration-500 ease-in-out ${isOpen ? "translate-y-0" : "-translate-y-full"
@@ -55,8 +52,15 @@ export default function ProjectDetailOverlay() {
               ariaLabel="Back to Projects"
             />
 
+            {/* Title Label */}
+            <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-10 bg-orange-400 dark:bg-orange-400 border-4 border-slate-900 px-8 py-2 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.8)]">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight text-center">
+                {title}
+              </h2>
+            </div>
+
             {/* Pixel Paper Background */}
-            <div className="w-full h-full bg-[#fdfaf3] dark:bg-slate-900 overflow-y-auto border-4 border-slate-900 dark:border-slate-500 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[12px_12px_0px_0px_rgba(0,0,0,0.8)] p-6 md:p-12">
+            <div className="w-full h-full bg-[#fdfaf3] dark:bg-slate-900 overflow-y-auto border-4 border-slate-900 dark:border-slate-500 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[12px_12px_0px_0px_rgba(0,0,0,0.8)] p-6 pt-16 md:p-12 md:pt-16">
 
               <div className="flex flex-col md:flex-row gap-8 lg:gap-12">
 
@@ -108,11 +112,9 @@ export default function ProjectDetailOverlay() {
                   )}
                 </div>
 
-                {/* Right Column: Title, Pictures/Videos & Description */}
+                {/* Right Column: Pictures/Videos & Description */}
                 <div className="flex flex-col md:w-2/3">
-                  <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 font-pixel">
-                    {title}
-                  </h2>
+
                   {/* Gallery Section */}
                   {mediaUrls.length > 0 && (
                     <div className="flex overflow-x-auto gap-4 p-2 snap-x snap-mandatory items-center">
@@ -188,7 +190,7 @@ export default function ProjectDetailOverlay() {
                     </div>
                   )}
 
-                  <div className="mb-8 min-h-[150px]">
+                  <div className="mb-8 min-h-[150px] mt-6">
                     {descriptionArray.map((paragraph, index) => (
                       <p
                         key={index}
