@@ -55,6 +55,13 @@ export default function AboutOverlay() {
         return () => clearInterval(typingTimer);
     }, [isTyping, fullText, setIsTyping]);
 
+    // Sync displayed text when the language changes after typing has finished
+    useEffect(() => {
+        if (isAboutOpen && !isTyping) {
+            setDisplayedText(fullText);
+        }
+    }, [fullText, isAboutOpen, isTyping]);
+
     const handleSkip = () => {
         if (isTyping) {
             setIsTyping(false);
@@ -65,7 +72,7 @@ export default function AboutOverlay() {
     const handleTopicChange = (e: React.MouseEvent, topic: Topic) => {
         e.stopPropagation(); // Prevents the click from triggering handleSkip on the parent container
         if (activeTopic === topic) return;
-        
+
         setActiveTopic(topic);
         setIsTyping(true);
     };
@@ -99,31 +106,28 @@ export default function AboutOverlay() {
                     <div className="mt-6 pt-6 border-t-2 border-slate-200 dark:border-slate-700 flex flex-wrap gap-4">
                         <button
                             onClick={(e) => handleTopicChange(e, "intro")}
-                            className={`px-4 py-2 font-bold uppercase tracking-wider text-sm transition-colors border-2 ${
-                                activeTopic === "intro"
+                            className={`px-4 py-2 font-bold uppercase tracking-wider text-sm transition-colors border-2 ${activeTopic === "intro"
                                     ? "bg-slate-900 text-white border-slate-900 dark:bg-slate-200 dark:text-slate-900 dark:border-slate-200"
                                     : "bg-transparent text-slate-700 border-slate-700 hover:bg-slate-200 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800"
-                            }`}
+                                }`}
                         >
                             {t.nav.intro}
                         </button>
                         <button
                             onClick={(e) => handleTopicChange(e, "tech")}
-                            className={`px-4 py-2 font-bold uppercase tracking-wider text-sm transition-colors border-2 ${
-                                activeTopic === "tech"
+                            className={`px-4 py-2 font-bold uppercase tracking-wider text-sm transition-colors border-2 ${activeTopic === "tech"
                                     ? "bg-slate-900 text-white border-slate-900 dark:bg-slate-200 dark:text-slate-900 dark:border-slate-200"
                                     : "bg-transparent text-slate-700 border-slate-700 hover:bg-slate-200 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800"
-                            }`}
+                                }`}
                         >
                             {t.nav.techStack}
                         </button>
                         <button
                             onClick={(e) => handleTopicChange(e, "education")}
-                            className={`px-4 py-2 font-bold uppercase tracking-wider text-sm transition-colors border-2 ${
-                                activeTopic === "education"
+                            className={`px-4 py-2 font-bold uppercase tracking-wider text-sm transition-colors border-2 ${activeTopic === "education"
                                     ? "bg-slate-900 text-white border-slate-900 dark:bg-slate-200 dark:text-slate-900 dark:border-slate-200"
                                     : "bg-transparent text-slate-700 border-slate-700 hover:bg-slate-200 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800"
-                            }`}
+                                }`}
                         >
                             {t.nav.education}
                         </button>
