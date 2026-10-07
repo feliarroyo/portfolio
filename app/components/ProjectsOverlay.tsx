@@ -31,7 +31,7 @@ export default function ProjectsOverlay() {
 
         {/* Title Label on top of overlay */}
         <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-10 bg-orange-400 dark:bg-orange-400 border-4 border-slate-900 px-8 py-2 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.8)]">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight font-pixel uppercase">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
             {t.nav.projects}
           </h2>
         </div>
