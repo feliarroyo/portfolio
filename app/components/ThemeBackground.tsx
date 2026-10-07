@@ -8,39 +8,28 @@ interface CloudTrackProps {
 
 function CloudTrack({ daySrc, nightSrc, animationClass }: CloudTrackProps) {
   return (
-    <div className={`absolute inset-0 flex w-[200%] h-full ${animationClass} will-change-transform`}>
+    <div className={`absolute inset-y-0 left-0 flex w-max h-full ${animationClass} will-change-transform`}>
       {/* First Segment */}
-      <div className="relative w-1/2 h-full shrink-0">
-        <Image
-          src={daySrc}
-          alt=""
-          fill
-          className="object-cover object-top pixelated transition-opacity duration-1000 dark:opacity-0"
-        />
-        <Image
-          src={nightSrc}
-          alt=""
-          fill
-          className="object-cover object-top pixelated opacity-0 dark:opacity-100 transition-opacity duration-1000"
-        />
+      <div className="relative flex h-full shrink-0">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={daySrc} alt="" className="h-full w-auto max-w-none opacity-0 pointer-events-none" aria-hidden="true" />
+
+        {/* Layered Images */}
+        <div className="absolute inset-0">
+          <Image src={daySrc} alt="" fill unoptimized className="object-cover object-top pixelated" style={{ imageRendering: "pixelated" }} />
+          <Image src={nightSrc} alt="" fill unoptimized className="object-cover object-top pixelated opacity-0 dark:opacity-100 transition-opacity duration-1000" style={{ imageRendering: "pixelated" }} />
+        </div>
       </div>
 
-      {/* Duplicate Segment (Enables seamless looping) */}
-      <div className="relative w-1/2 h-full shrink-0 -translate-x-px" aria-hidden="true">
-        <Image
-          src={daySrc}
-          alt=""
-          fill
-          unoptimized
-          className="object-cover object-top pixelated transition-opacity duration-1000 dark:opacity-0"
-        />
-        <Image
-          src={nightSrc}
-          alt=""
-          fill
-          unoptimized
-          className="object-cover object-top pixelated opacity-0 dark:opacity-100 transition-opacity duration-1000"
-        />
+      {/* Duplicate Segment */}
+      <div className="relative flex h-full shrink-0 -translate-x-px" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={daySrc} alt="" className="h-full w-auto max-w-none opacity-0 pointer-events-none" aria-hidden="true" />
+
+        <div className="absolute inset-0">
+          <Image src={daySrc} alt="" fill unoptimized className="object-cover object-top pixelated" style={{ imageRendering: "pixelated" }} />
+          <Image src={nightSrc} alt="" fill unoptimized className="object-cover object-top pixelated opacity-0 dark:opacity-100 transition-opacity duration-1000" style={{ imageRendering: "pixelated" }} />
+        </div>
       </div>
     </div>
   );
@@ -53,14 +42,12 @@ export default function ThemeBackground() {
       <div className="fixed inset-0 z-[-3] pointer-events-none overflow-hidden bg-cyan-500 dark:bg-purple-950 transition-colors duration-1000">
         {/* Day Sky */}
         <div className="absolute inset-0">
-          <Image src="/images/bg/day-bg.png" alt="Day Sky" fill className="object-cover object-top pixelated" unoptimized />
-          <Image src="/images/bg/day-shine.png" alt="Sun Shine" fill className="object-cover object-top pixelated" unoptimized />
+          <Image src="/images/bg/day-bg.png" alt="Day Sky" fill className="object-cover object-top pixelated" unoptimized style={{ imageRendering: "pixelated" }} />
         </div>
 
         {/* Night Sky */}
         <div className="absolute inset-0 opacity-0 dark:opacity-100 transition-opacity duration-1000">
-          <Image src="/images/bg/night-bg.png" alt="Night Sky" fill className="object-cover object-top pixelated" unoptimized />
-          <Image src="/images/bg/night-shine.png" alt="Moon Shine" fill className="object-cover object-top pixelated" unoptimized />
+          <Image src="/images/bg/night-bg.png" alt="Night Sky" fill className="object-cover object-top pixelated" unoptimized style={{ imageRendering: "pixelated" }} />
         </div>
       </div>
 
@@ -75,7 +62,7 @@ export default function ThemeBackground() {
             height={54}
             unoptimized
             style={{ imageRendering: "pixelated" }}
-            className="theme-sprite transition-transform duration-300"
+            className="theme-sprite relative z-10 transition-transform duration-300"
           />
         </div>
 
@@ -88,9 +75,10 @@ export default function ThemeBackground() {
             height={54}
             unoptimized
             style={{ imageRendering: "pixelated" }}
-            className="theme-sprite transition-transform duration-300"
+            className="theme-sprite relative z-10 transition-transform duration-300"
           />
         </div>
+
       </div>
 
       {/* CLOUDS LAYER: z-[-1] */}
