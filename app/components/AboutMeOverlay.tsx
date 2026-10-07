@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useUI } from "../context/UIContext";
 import { useLanguage } from "../context/LanguageContext";
 import OverlayButton from "./OverlayButton";
@@ -14,8 +14,9 @@ export default function AboutOverlay() {
     const [activeTopic, setActiveTopic] = useState<Topic>("intro");
     const [displayedText, setDisplayedText] = useState("");
 
-    // Map topics to their respective translations.
-    // Ensure these keys exist in your language configuration files!
+    const defaultSpeed = 30;
+    const speedRef = useRef(defaultSpeed);
+
     const topicContent: Record<Topic, string> = {
         intro: t.text.aboutMeContent,
         tech: t.text.techStackContent,
@@ -27,6 +28,7 @@ export default function AboutOverlay() {
     // Reset when opening/closing
     useEffect(() => {
         if (isAboutOpen) {
+            speedRef.current = defaultSpeed; // Reset speed
             setActiveTopic("intro");
             setIsTyping(true);
             setDisplayedText(""); // Clear text for fresh start
@@ -41,18 +43,22 @@ export default function AboutOverlay() {
 
         let currentIndex = 0;
         setDisplayedText(""); // Clear text immediately when typing starts
+        let timeoutId: NodeJS.Timeout;
 
-        const typingTimer = setInterval(() => {
+        const typeNextChar = () => {
             setDisplayedText(fullText.slice(0, currentIndex + 1));
             currentIndex++;
 
             if (currentIndex >= fullText.length) {
-                clearInterval(typingTimer);
                 setIsTyping(false);
+            } else {
+                timeoutId = setTimeout(typeNextChar, speedRef.current);
             }
-        }, 40);
+        };
 
-        return () => clearInterval(typingTimer);
+        timeoutId = setTimeout(typeNextChar, speedRef.current);
+
+        return () => clearTimeout(timeoutId);
     }, [isTyping, fullText, setIsTyping]);
 
     // Sync displayed text when the language changes after typing has finished
@@ -64,8 +70,8 @@ export default function AboutOverlay() {
 
     const handleSkip = () => {
         if (isTyping) {
-            setIsTyping(false);
-            setDisplayedText(fullText);
+            // Dramatically lower the delay to fast-forward the rest of the text
+            speedRef.current = 2;
         }
     };
 
@@ -73,6 +79,7 @@ export default function AboutOverlay() {
         e.stopPropagation(); // Prevents the click from triggering handleSkip on the parent container
         if (activeTopic === topic) return;
 
+        speedRef.current = defaultSpeed; // Reset back to default speed for the new topic
         setActiveTopic(topic);
         setIsTyping(true);
     };
