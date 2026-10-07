@@ -29,15 +29,15 @@ export default function ProjectsOverlay() {
           ariaLabel="Close Projects"
         />
 
-        {/* Pixel Paper Background (thick borders, sharp corners and blocky drop shadow) */}
-        <div className="w-full h-full bg-[#fdfaf3] dark:bg-slate-900 overflow-y-auto border-4 border-slate-900 dark:border-slate-500 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[12px_12px_0px_0px_rgba(0,0,0,0.8)] p-6 md:p-12">
+        {/* Title Label on top of overlay */}
+        <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-10 bg-orange-400 dark:bg-orange-400 border-4 border-slate-900 px-8 py-2 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.8)]">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight font-pixel uppercase">
+            {t.nav.projects}
+          </h2>
+        </div>
 
-          {/* Projects Content */}
-          <div className="mb-12 text-center md:text-left">
-            <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4 font-pixel">
-              {t.nav.projects}
-            </h2>
-          </div>
+        {/* Pixel Paper Background (thick borders, sharp corners and blocky drop shadow) */}
+        <div className="w-full h-full bg-[#fdfaf3] dark:bg-slate-900 overflow-y-auto border-4 border-slate-900 dark:border-slate-500 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[12px_12px_0px_0px_rgba(0,0,0,0.8)] p-6 pt-16 md:p-12 md:pt-16">
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {PORTFOLIO_PROJECTS.map((project) => (
