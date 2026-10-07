@@ -36,8 +36,8 @@ export default function LanguageToggle({ className }: LanguageToggleProps) {
             <Image
               src="/images/icons/lang_toggle.png"
               alt={t.nav.language}
-              width={54}
-              height={54}
+              width={48}
+              height={48}
               unoptimized
               className="transition-transform duration-800 ease-in-out group-hover:scale-110"
               style={{ imageRendering: 'pixelated' }}
