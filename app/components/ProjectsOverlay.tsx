@@ -7,14 +7,16 @@ import { useLanguage } from "../context/LanguageContext";
 import OverlayButton from "./OverlayButton";
 
 export default function ProjectsOverlay() {
-  const { isProjectsOpen, setProjectsOpen } = useUI();
+  const { isProjectsOpen, setProjectsOpen, activeProject } = useUI();
   const { t } = useLanguage();
+  
+  const isDetailOpen = activeProject !== null;
 
   return (
     <div
-      // Sliding with padding to not touch the top/bottom of the screen
-      className={`fixed inset-0 z-50 flex justify-center p-4 sm:p-8 pt-28 sm:pt-28 transition-transform duration-500 ease-in-out ${isProjectsOpen ? "translate-y-0" : "-translate-y-full"
-        }`}
+      className={`fixed inset-0 z-50 flex justify-center p-4 sm:p-8 pt-28 sm:pt-28 transition-transform duration-500 ease-in-out ${
+        isProjectsOpen ? "translate-y-0" : "-translate-y-full"
+      } ${isDetailOpen ? "pointer-events-none" : "pointer-events-auto"}`} // prevent from using UI when a project overview is active
     >
 
       {/* Container occupying most of the horizontal space */}
