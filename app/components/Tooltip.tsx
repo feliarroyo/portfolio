@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { useUI } from "../context/UIContext";
 
 interface TooltipProps {
   text: string;
@@ -18,6 +19,10 @@ interface TooltipProps {
 
 export default function Tooltip({ text, children, position = "top", forceTooltipOnMobile = false, tooltipClassName = "" }: TooltipProps) {
   
+  // Determine if the user is cleanly on the main page to decide if hide tooltips on mobile
+  const { isProjectsOpen, activeProject, isAboutOpen } = useUI();
+  const isMainPage = !isProjectsOpen && !activeProject && !isAboutOpen;
+
   const positionClasses = {
     top: "bottom-full left-1/2 -translate-x-1/2 mb-2 flex-col",
     bottom: "top-full left-1/2 -translate-x-1/2 mt-2 flex-col",
@@ -77,7 +82,10 @@ export default function Tooltip({ text, children, position = "top", forceTooltip
       {children}
 
       <div 
-        className={`absolute hidden ${forceTooltipOnMobile ? '[@media(hover:none)]:flex' : ''} group-hover:flex items-center justify-center pointer-events-none z-50 ${positionClasses[position] } ${tooltipClassName}`}
+        // On mobile, tooltips are hidden if not on main page
+        className={`absolute hidden ${
+          forceTooltipOnMobile && isMainPage ? '[@media(hover:none)]:flex' : ''
+        } group-hover:flex items-center justify-center pointer-events-none z-50 ${positionClasses[position]} ${tooltipClassName}`}
       >
         {(isBottom || isRight) && renderArrow()}
         
