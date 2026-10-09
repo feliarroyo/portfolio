@@ -152,23 +152,23 @@ function AboutDialogContent({
         ariaLabel="Close About Me"
       />
 
-      {/* Left Arrow Zone */}
+      {/* Desktop Left Arrow Zone */}
       {canGoPrev && (
         <button
           onClick={handlePrevPage}
           aria-label="Previous Page"
-          className="absolute -left-10 sm:-left-16 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 z-20 hover:scale-180 transition-transform cursor-pointer"
+          className="hidden sm:block absolute -left-10 sm:-left-16 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 z-20 hover:scale-110 transition-transform cursor-pointer"
         >
           <div className="w-full h-full arrow-sprite scale-x-[-1]" />
         </button>
       )}
 
-      {/* Right Arrow Zone */}
+      {/* Desktop Right Arrow Zone */}
       {canGoNext && (
         <button
           onClick={handleNextPage}
           aria-label="Next Page"
-          className="absolute -right-10 sm:-right-16 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 z-20 hover:scale-180 transition-transform cursor-pointer"
+          className="hidden sm:block absolute -right-10 sm:-right-16 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 z-20 hover:scale-110 transition-transform cursor-pointer"
         >
           <div className="w-full h-full arrow-sprite" />
         </button>
@@ -181,21 +181,52 @@ function AboutDialogContent({
       >
         {/* Main Content Area */}
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 grow overflow-hidden h-full">
-          {/* Avatar Frame & Name */}
-          <div className="shrink-0 flex flex-col items-center">
-            <div className="relative w-16 h-16 sm:w-20 sm:h-20 border-3 border-slate-900 dark:border-slate-400 bg-amber-100 dark:bg-slate-800 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.3)] overflow-hidden">
-              <Image
-                src="/images/profile.png"
-                alt="Profile"
-                fill
-                sizes="80px"
-                className="object-cover"
-                priority
-              />
+          
+          {/* Avatar Frame, Name & Mobile Arrows */}
+          <div className="shrink-0 flex flex-row sm:flex-col items-center justify-center gap-6 sm:gap-0 w-full sm:w-auto">
+            
+            {/* Mobile Left Arrow */}
+            {canGoPrev ? (
+              <button
+                onClick={handlePrevPage}
+                aria-label="Previous Page"
+                className="sm:hidden w-8 h-8 z-20 hover:scale-110 transition-transform cursor-pointer"
+              >
+                <div className="w-full h-full arrow-sprite scale-x-[-1]" />
+              </button>
+            ) : (
+              <div className="sm:hidden w-8 h-8" /> /* Spacing placeholder to keep Avatar centered */
+            )}
+
+            {/* Avatar Box */}
+            <div className="flex flex-col items-center">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 border-3 border-slate-900 dark:border-slate-400 bg-amber-100 dark:bg-slate-800 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.3)] overflow-hidden">
+                <Image
+                  src="/images/profile.png"
+                  alt="Profile"
+                  fill
+                  sizes="80px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <span className="mt-1.5 text-xs font-bold font-mono tracking-widest text-slate-800 dark:text-slate-200 uppercase select-none">
+                FELIPE
+              </span>
             </div>
-            <span className="mt-1.5 text-xs font-bold font-mono tracking-widest text-slate-800 dark:text-slate-200 uppercase select-none">
-              FELIPE
-            </span>
+
+            {/* Mobile Right Arrow */}
+            {canGoNext ? (
+              <button
+                onClick={handleNextPage}
+                aria-label="Next Page"
+                className="sm:hidden w-8 h-8 z-20 hover:scale-110 transition-transform cursor-pointer"
+              >
+                <div className="w-full h-full arrow-sprite" />
+              </button>
+            ) : (
+              <div className="sm:hidden w-8 h-8" /> /* Spacing placeholder to keep Avatar centered */
+            )}
           </div>
 
           {/* Dialogue Text */}
