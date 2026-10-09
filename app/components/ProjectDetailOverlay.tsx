@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useUI } from "../context/UIContext";
 import { useLanguage } from "../context/LanguageContext";
 import Image from "next/image";
@@ -17,17 +17,28 @@ export default function ProjectDetailOverlay() {
   const { activeProject, setActiveProject } = useUI();
   const { language } = useLanguage();
 
-  const [prevActiveProject, setPrevActiveProject] = useState(activeProject);
   const [displayProject, setDisplayProject] = useState(activeProject);
+  const [prevActiveProject, setPrevActiveProject] = useState(activeProject);
+  const [expandedImage, setExpandedImage] = useState<string | null>(null);
 
-  if (activeProject !== prevActiveProject) {
+  if (activeProject && activeProject !== prevActiveProject) {
     setPrevActiveProject(activeProject);
-
-    // Update the display if there is a new project. 
-    if (activeProject !== null) {
-      setDisplayProject(activeProject);
-    }
+    setDisplayProject(activeProject);
+    setExpandedImage(null);
+  } else if (!activeProject && prevActiveProject) {
+    setPrevActiveProject(null);
   }
+
+  // Delayed cleanup using useEffect only for the closing animation
+  useEffect(() => {
+    if (!activeProject) {
+      const timer = setTimeout(() => {
+        setDisplayProject(null);
+        setExpandedImage(null);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [activeProject]);
 
   const isOpen = activeProject !== null;
 
@@ -37,27 +48,34 @@ export default function ProjectDetailOverlay() {
   const descriptionArray = displayProject ? displayProject.description[language as keyof typeof displayProject.description] || displayProject.description.en : [""];
   const headerBg = displayProject?.theme?.headerBgClass || "bg-slate-100 dark:bg-slate-900";
   const mediaUrls = displayProject?.mediaUrls || [];
-  const [expandedImage, setExpandedImage] = useState<string | null>(null);
+
+  // Dynamic Header Size based on character length
+  const getTitleSize = (text: string) => {
+    if (text.length > 22) return "text-xl sm:text-2xl md:text-3xl";
+    if (text.length > 14) return "text-2xl sm:text-3xl md:text-4xl";
+    return "text-3xl md:text-4xl";
+  };
 
   return (
     <div
-      className={`fixed inset-0 z-60 flex justify-center p-4 sm:p-8 pt-28 sm:pt-28 transition-transform duration-500 ease-in-out ${isOpen ? "translate-y-0" : "-translate-y-full"
+      className={`fixed inset-0 z-999 flex justify-center p-4 sm:p-8 pt-28 sm:pt-28 transition-transform duration-500 ease-in-out ${isOpen ? "translate-y-0" : "-translate-y-full"
         }`}
     >
       <div className="relative w-full max-w-5xl h-full flex flex-col">
         {displayProject && (
           <>
-            {/* Back Button */}
-            <OverlayButton
-              variant="back"
-              onClick={() => setActiveProject(null)}
-              className="-top-16 right-0 md:-left-16 md:top-0"
-              ariaLabel="Back to Projects"
-            />
+            {/* Title Label & Back Button Group */}
+            <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-20 bg-orange-400 dark:bg-orange-400 border-4 border-slate-900 px-4 sm:px-8 py-2 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.8)] w-[85%] sm:w-auto flex justify-center text-center">
 
-            {/* Title Label */}
-            <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-10 bg-orange-400 dark:bg-orange-400 border-4 border-slate-900 px-8 py-2 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.8)]">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight text-center">
+              {/* Back Button */}
+              <OverlayButton
+                variant="back"
+                onClick={() => setActiveProject(null)}
+                className="absolute top-1/2 -translate-y-1/2 -left-12 sm:-left-16 md:-left-20"
+                ariaLabel="Back to Projects"
+              />
+
+              <h2 className={`${getTitleSize(title)} font-bold text-slate-900 tracking-tight whitespace-normal sm:whitespace-nowrap transition-all`}>
                 {title}
               </h2>
             </div>
@@ -132,7 +150,7 @@ export default function ProjectDetailOverlay() {
                           >
                             <iframe
                               src={youtubeEmbedUrl}
-                              title={`${displayProject.title} video ${index + 1}`}
+                              title={`${title} video ${index + 1}`}
                               className="w-full h-full"
                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                               allowFullScreen
@@ -147,7 +165,7 @@ export default function ProjectDetailOverlay() {
                           >
                             <Image
                               src={url}
-                              alt={`${displayProject.title} media ${index + 1}`}
+                              alt={`${title} media ${index + 1}`}
                               width={0}
                               height={0}
                               sizes="(max-width: 768px) 100vw, 400px"
@@ -162,7 +180,7 @@ export default function ProjectDetailOverlay() {
                   {/* Full-size Image Lightbox Overlay */}
                   {expandedImage && (
                     <div
-                      className="fixed inset-0 z-100 flex items-center justify-center bg-black/80 p-4 md:p-12 cursor-pointer"
+                      className="fixed inset-0 z-9999 flex items-center justify-center bg-black/80 p-4 md:p-12 cursor-pointer"
                       onClick={() => setExpandedImage(null)}
                     >
                       {/* Framed Container */}
@@ -174,7 +192,7 @@ export default function ProjectDetailOverlay() {
                         <OverlayButton
                           variant="close"
                           onClick={() => setExpandedImage(null)}
-                          className="-top-5 -right-5 md:-top-6 md:-right-6 md:w-12 md:h-12 z-10"
+                          className="-top-5 -right-5 md:-top-6 md:-right-6 md:w-12 md:h-12 z-50"
                           ariaLabel="Close Image"
                         />
 
