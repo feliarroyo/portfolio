@@ -23,7 +23,7 @@ export default function Home() {
       <header className="relative z-60 pointer-events-none grid grid-cols-3 w-full items-start p-4 sm:p-8">
         <div className="flex justify-start pointer-events-auto"><LanguageToggle /></div>
         <div className="flex justify-center pointer-events-auto"><DarkModeToggle /></div>
-        <div className="flex justify-end pointer-events-auto"><SocialMediaIcons /></div>
+        <div className="hidden sm:flex justify-end pointer-events-auto"><SocialMediaIcons /></div>
       </header>
 
       {/* MIDDLE ROW: flex-grow pushes the header up and footer down */}
@@ -40,6 +40,10 @@ export default function Home() {
         >
           {subtitleText}
         </h2>
+        {/* Visible only on mobile/small screens */}
+        <div className="sm:hidden flex justify-center mt-4 pointer-events-auto relative z-60">
+          <SocialMediaIcons />
+        </div>
       </main>
 
       {/* BOTTOM ROW: selectable objects on the ground */}
