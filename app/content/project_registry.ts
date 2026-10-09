@@ -329,7 +329,11 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         ],
         iconUrl: "/images/projects/asmtoexe/icon.png",
         logoUrl: "/images/projects/asmtoexe/logo.webp",
-        mediaUrls: [],
+        mediaUrls: [
+            "/images/projects/asmtoexe/cmd.png",
+            "/images/projects/asmtoexe/codigo.png",
+            "/images/projects/asmtoexe/diagrama.png"
+        ],
         theme: {
             headerBgClass: "bg-gray-200 dark:bg-gray-600",
             contentBgClass: "bg-blue-50 dark:bg-blue-950"
