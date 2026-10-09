@@ -8,8 +8,6 @@ export default function ThemeGround({ children }: { children: React.ReactNode })
     // Tile sizes
     const grassWidth = 12 * SCALE;
     const grassHeight = 14 * SCALE;
-    const dirtWidth = 12 * SCALE;
-    const dirtHeight = 13 * SCALE;
 
     return (
         <footer className="relative w-full mt-auto flex flex-col">
@@ -47,28 +45,6 @@ export default function ThemeGround({ children }: { children: React.ReactNode })
                 />
             </div>
 
-            {/* Dirt tiles replicate below the grass*/}
-            <div
-                className="relative w-full pixelated"
-                style={{ height: `${dirtWidth}px ${dirtHeight}px` }}
-            >
-                <div
-                    className="absolute inset-0 bg-repeat transition-opacity duration-1000 opacity-100 dark:opacity-0"
-                    style={{
-                        backgroundImage: "url('/images/foreground/day-dirt-tile.png')",
-                        backgroundSize: `${dirtWidth}px ${dirtHeight}px`,
-                        imageRendering: 'pixelated'
-                    }}
-                />
-                <div
-                    className="absolute inset-0 bg-repeat transition-opacity duration-1000 opacity-0 dark:opacity-100"
-                    style={{
-                        backgroundImage: "url('/images/foreground/night-dirt-tile.png')",
-                        backgroundSize: `${dirtWidth}px ${dirtHeight}px`,
-                        imageRendering: 'pixelated'
-                    }}
-                />
-            </div>
 
         </footer>
     );
