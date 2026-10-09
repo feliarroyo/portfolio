@@ -14,28 +14,34 @@ function TypewriterText({
   text,
   isFastForward,
   onTypingChange,
+  isActive,
 }: {
   text: string;
   isFastForward: boolean;
   onTypingChange: (isTyping: boolean) => void;
+  isActive: boolean;
 }) {
   const [charCount, setCharCount] = useState(0);
   const isFinished = charCount >= text.length;
   const speed = isFastForward ? 1 : 25;
 
   useEffect(() => {
+    if (!isActive) {
+      onTypingChange(false);
+      return;
+    }
     onTypingChange(!isFinished);
-  }, [isFinished, onTypingChange]);
+  }, [isFinished, onTypingChange, isActive]);
 
   useEffect(() => {
-    if (isFinished) return;
+    if (isFinished || !isActive) return;
 
     const timer = setTimeout(() => {
       setCharCount((c) => c + 1);
     }, speed);
 
     return () => clearTimeout(timer);
-  }, [charCount, text.length, speed, isFinished]);
+  }, [charCount, text.length, speed, isFinished, isActive]);
 
   return (
     <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed font-mono">
@@ -52,10 +58,10 @@ function TypewriterText({
 // Inner dialog
 function AboutDialogContent({
   onClose,
-  sessionKey,
+  isOpen,
 }: {
   onClose: () => void;
-  sessionKey: number;
+  isOpen: boolean;
 }) {
   const { setAboutTyping } = useUI();
   const { t } = useLanguage();
@@ -123,6 +129,21 @@ function AboutDialogContent({
 
   return (
     <div className="relative w-full max-w-2xl">
+      {/* Sprite Animation Styles */}
+      <style>{`
+        @keyframes arrow-sprite-play {
+          from { background-position: 0% center; }
+          to { background-position: 133.333% center; }
+        }
+        .arrow-sprite {
+          background-image: url('/assets/arrow.png');
+          background-size: 400% 100%;
+          background-repeat: no-repeat;
+          image-rendering: pixelated;
+          animation: arrow-sprite-play 0.6s steps(4) infinite alternate;
+        }
+      `}</style>
+
       {/* Close Button */}
       <OverlayButton
         variant="close"
@@ -131,13 +152,35 @@ function AboutDialogContent({
         ariaLabel="Close About Me"
       />
 
+      {/* Left Arrow Zone */}
+      {canGoPrev && (
+        <button
+          onClick={handlePrevPage}
+          aria-label="Previous Page"
+          className="absolute -left-10 sm:-left-16 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 z-20 hover:scale-180 transition-transform cursor-pointer"
+        >
+          <div className="w-full h-full arrow-sprite scale-x-[-1]" />
+        </button>
+      )}
+
+      {/* Right Arrow Zone */}
+      {canGoNext && (
+        <button
+          onClick={handleNextPage}
+          aria-label="Next Page"
+          className="absolute -right-10 sm:-right-16 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 z-20 hover:scale-180 transition-transform cursor-pointer"
+        >
+          <div className="w-full h-full arrow-sprite" />
+        </button>
+      )}
+
       {/* Compact Fixed Window */}
       <div
         onClick={() => setIsFastForward(true)}
-        className="relative w-full h-70 sm:h-55 bg-[#fdfaf3] dark:bg-slate-900 border-4 border-slate-900 dark:border-slate-500 shadow-[10px_10px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[10px_10px_0px_0px_rgba(0,0,0,0.8)] p-4 sm:p-5 flex flex-col justify-between overflow-hidden cursor-pointer select-none"
+        className="relative w-full h-96 sm:h-55 bg-[#fdfaf3] dark:bg-slate-900 border-4 border-slate-900 dark:border-slate-500 shadow-[10px_10px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[10px_10px_0px_0px_rgba(0,0,0,0.8)] p-4 sm:p-5 flex flex-col justify-between overflow-hidden cursor-pointer select-none"
       >
         {/* Main Content Area */}
-        <div className="flex flex-row items-center sm:items-start gap-4 sm:gap-5 grow overflow-hidden">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 grow overflow-hidden h-full">
           {/* Avatar Frame & Name */}
           <div className="shrink-0 flex flex-col items-center">
             <div className="relative w-16 h-16 sm:w-20 sm:h-20 border-3 border-slate-900 dark:border-slate-400 bg-amber-100 dark:bg-slate-800 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.3)] overflow-hidden">
@@ -156,61 +199,51 @@ function AboutDialogContent({
           </div>
 
           {/* Dialogue Text */}
-          <div className="grow w-full overflow-y-auto px-4 sm:px-6 min-h-0">
+          <div className="flex-1 w-full overflow-y-auto px-2 sm:px-6 min-h-0 h-full">
             <TypewriterText
-              key={`${sessionKey}-${currentPage}`}
+              key={currentPage}
               text={currentText}
               isFastForward={isFastForward}
               onTypingChange={setAboutTyping}
+              isActive={isOpen}
             />
           </div>
         </div>
 
-        {/* Left Arrow Zone */}
-        {canGoPrev && (
-          <button
-            onClick={handlePrevPage}
-            aria-label="Previous Page"
-            className="absolute left-0 top-0 bottom-14 w-12 sm:w-14 z-20 flex items-center justify-start pl-1 sm:pl-2 text-xl sm:text-2xl font-bold text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white transition-colors bg-linear-to-r from-black/10 to-transparent hover:from-black/15 select-none cursor-pointer"
-          >
-            &#x25C4;
-          </button>
-        )}
-
-        {/* Right Arrow Zone */}
-        {canGoNext && (
-          <button
-            onClick={handleNextPage}
-            aria-label="Next Page"
-            className="absolute right-0 top-0 bottom-14 w-12 sm:w-14 z-20 flex items-center justify-end pr-1 sm:pr-2 text-xl sm:text-2xl font-bold text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white transition-colors bg-linear-to-l from-black/10 to-transparent hover:from-black/15 select-none cursor-pointer"
-          >
-            &#x25BA;
-          </button>
-        )}
-
         {/* Bottom Bar */}
-        <div className="mt-3 pt-3 border-t-2 border-slate-200 dark:border-slate-700 flex items-center justify-between z-10">
-          {/* Section Switcher Tabs */}
-          <div className="flex gap-1.5 sm:gap-2">
-            {TOPICS.map((topic) => (
-              <button
-                key={topic}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleTopicChange(topic);
-                }}
-                className={`px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider border-2 transition-colors cursor-pointer ${
-                  activeTopic === topic
-                    ? "bg-slate-900 text-white border-slate-900 dark:bg-slate-200 dark:text-slate-900 dark:border-slate-200"
-                    : "bg-transparent text-slate-700 border-slate-600 hover:bg-slate-200 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800"
-                }`}
-              >
-                {topicTitles[topic]}
-              </button>
-            ))}
+        <div className="mt-3 pt-3 border-t-2 border-slate-200 dark:border-slate-700 flex items-center justify-between z-10 shrink-0">
+          
+          {/* Section Switcher */}
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            {/* Desktop Tabs */}
+            <div className="hidden sm:flex gap-1.5 sm:gap-2">
+              {TOPICS.map((topic) => (
+                <button
+                  key={topic}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleTopicChange(topic);
+                  }}
+                  className={`px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider border-2 transition-colors cursor-pointer ${
+                    activeTopic === topic
+                      ? "bg-slate-900 text-white border-slate-900 dark:bg-slate-200 dark:text-slate-900 dark:border-slate-200"
+                      : "bg-transparent text-slate-700 border-slate-600 hover:bg-slate-200 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800"
+                  }`}
+                >
+                  {topicTitles[topic]}
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile Title View */}
+            <div className="sm:hidden px-2 py-1">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-900 dark:text-slate-200">
+                {topicTitles[activeTopic]}
+              </span>
+            </div>
           </div>
 
-          {/* Global Page Counter & Dots (1 to 6) */}
+          {/* Global Page Counter & Dots */}
           {totalPages > 1 && (
             <div className="flex items-center gap-2 sm:gap-3">
               <span className="text-[11px] sm:text-xs font-mono font-bold text-slate-600 dark:text-slate-400">
@@ -239,16 +272,6 @@ function AboutDialogContent({
 // Parent: purely controls visibility & entrance/exit animations
 export default function AboutOverlay() {
   const { isAboutOpen, setAboutOpen, setAboutTyping } = useUI();
-  const [sessionCount, setSessionCount] = useState(0);
-
-  // When opening, bump session count so inner dialog mounts fresh with page 0
-  const [prevOpen, setPrevOpen] = useState(isAboutOpen);
-  if (isAboutOpen && !prevOpen) {
-    setPrevOpen(true);
-    setSessionCount((s) => s + 1);
-  } else if (!isAboutOpen && prevOpen) {
-    setPrevOpen(false);
-  }
 
   const handleClose = () => {
     setAboutOpen(false);
@@ -264,8 +287,7 @@ export default function AboutOverlay() {
       }`}
     >
       <AboutDialogContent
-        key={sessionCount}
-        sessionKey={sessionCount}
+        isOpen={isAboutOpen}
         onClose={handleClose}
       />
     </div>
