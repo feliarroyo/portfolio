@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function ThemeGround({ children }: { children: React.ReactNode }) {
-    
+
     // Image scaling
     const SCALE = 4;
 
@@ -28,19 +28,19 @@ export default function ThemeGround({ children }: { children: React.ReactNode })
                 style={{ height: `${grassHeight}px` }}
             >
                 <div
-                    className="absolute inset-0 bg-repeat-x bg-bottom transition-opacity duration-1000 opacity-100 dark:opacity-0"
+                    className="absolute inset-0 bg-repeat-x bg-bottom pixelated"
                     style={{
                         backgroundImage: "url('/images/foreground/day-grass-tile.png')",
                         backgroundSize: `${grassWidth}px ${grassHeight}px`,
-                        imageRendering: 'pixelated'
+                        imageRendering: "pixelated",
                     }}
                 />
                 <div
-                    className="absolute inset-0 bg-repeat-x bg-bottom transition-opacity duration-1000 opacity-0 dark:opacity-100"
+                    className="absolute inset-0 bg-repeat-x bg-bottom pixelated opacity-0 dark:opacity-100 transition-opacity duration-1000"
                     style={{
                         backgroundImage: "url('/images/foreground/night-grass-tile.png')",
                         backgroundSize: `${grassWidth}px ${grassHeight}px`,
-                        imageRendering: 'pixelated'
+                        imageRendering: "pixelated",
                     }}
                 />
             </div>
