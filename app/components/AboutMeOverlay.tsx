@@ -157,7 +157,7 @@ function AboutDialogContent({
         <button
           onClick={handlePrevPage}
           aria-label="Previous Page"
-          className="hidden sm:block absolute -left-10 sm:-left-16 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 z-20 hover:scale-110 transition-transform cursor-pointer"
+          className="hidden sm:block absolute -left-10 sm:-left-16 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 z-20 hover:scale-180 transition-transform cursor-pointer"
         >
           <div className="w-full h-full arrow-sprite scale-x-[-1]" />
         </button>
@@ -168,7 +168,7 @@ function AboutDialogContent({
         <button
           onClick={handleNextPage}
           aria-label="Next Page"
-          className="hidden sm:block absolute -right-10 sm:-right-16 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 z-20 hover:scale-110 transition-transform cursor-pointer"
+          className="hidden sm:block absolute -right-10 sm:-right-16 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 z-20 hover:scale-180 transition-transform cursor-pointer"
         >
           <div className="w-full h-full arrow-sprite" />
         </button>
@@ -190,7 +190,7 @@ function AboutDialogContent({
               <button
                 onClick={handlePrevPage}
                 aria-label="Previous Page"
-                className="sm:hidden w-8 h-8 z-20 hover:scale-110 transition-transform cursor-pointer"
+                className="sm:hidden w-8 h-8 z-20 hover:scale-180 transition-transform cursor-pointer"
               >
                 <div className="w-full h-full arrow-sprite scale-x-[-1]" />
               </button>
@@ -220,7 +220,7 @@ function AboutDialogContent({
               <button
                 onClick={handleNextPage}
                 aria-label="Next Page"
-                className="sm:hidden w-8 h-8 z-20 hover:scale-110 transition-transform cursor-pointer"
+                className="sm:hidden w-8 h-8 z-20 hover:scale-180 transition-transform cursor-pointer"
               >
                 <div className="w-full h-full arrow-sprite" />
               </button>
