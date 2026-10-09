@@ -22,18 +22,24 @@ export default function ProjectsOverlay() {
       {/* Container occupying most of the horizontal space */}
       <div className="relative w-full max-w-5xl h-full flex flex-col">
 
-        <OverlayButton
-          variant="close"
-          onClick={() => setProjectsOpen(false)}
-          className="-top-16 right-0 md:-left-16 md:top-0"
-          ariaLabel="Close Projects"
-        />
+        {/* Title Label & Close Button Wrapper - Fades out when detail overlay opens */}
+        <div 
+          className={`absolute -top-6 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3 transition-opacity duration-300 ${
+            isDetailOpen ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"
+          }`}
+        >
+          <div className="bg-orange-400 dark:bg-orange-400 border-4 border-slate-900 px-8 py-2 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.8)]">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
+              {t.nav.projects}
+            </h2>
+          </div>
 
-        {/* Title Label on top of overlay */}
-        <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-10 bg-orange-400 dark:bg-orange-400 border-4 border-slate-900 px-8 py-2 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.8)]">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
-            {t.nav.projects}
-          </h2>
+          <OverlayButton
+            variant="close"
+            onClick={() => setProjectsOpen(false)}
+            className="static shrink-0"
+            ariaLabel="Close Projects"
+          />
         </div>
 
         {/* Pixel Paper Background (thick borders, sharp corners and blocky drop shadow) */}
