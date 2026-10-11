@@ -47,7 +47,7 @@ export default function LanguageToggle({ className }: LanguageToggleProps) {
       </button>
 
       <div className="w-24 text-center mt-1">
-        <span className="text-md block">
+        <span className="text-black dark:text-gray-100 text-md block">
           {language === "en" ? "English" : "Español"}
         </span>
       </div>
