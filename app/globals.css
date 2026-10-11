@@ -57,13 +57,13 @@ body:has(#theme-toggle-btn:hover) .theme-sprite {
 }
 
 .animate-clouds-slow {
-  animation: infinite-cloud-scroll 120s linear infinite;
+  animation: infinite-cloud-scroll 480s linear infinite;
 }
 
 .animate-clouds-mid {
-  animation: infinite-cloud-scroll 80s linear infinite;
+  animation: infinite-cloud-scroll 320s linear infinite;
 }
 
 .animate-clouds-fast {
-  animation: infinite-cloud-scroll 50s linear infinite;
+  animation: infinite-cloud-scroll 200s linear infinite;
 }

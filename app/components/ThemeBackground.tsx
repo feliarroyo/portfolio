@@ -7,29 +7,39 @@ interface CloudTrackProps {
 }
 
 function CloudTrack({ daySrc, nightSrc, animationClass }: CloudTrackProps) {
+  const placeholders = [...Array(4)].map((_, i) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img key={i} src={daySrc} alt="" className="h-full w-auto max-w-none opacity-0 pointer-events-none" aria-hidden="true" />
+  ));
+
   return (
     <div className={`absolute inset-y-0 left-0 flex w-max h-full ${animationClass} will-change-transform`}>
       {/* First Segment */}
       <div className="relative flex h-full shrink-0">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={daySrc} alt="" className="h-full w-auto max-w-none opacity-0 pointer-events-none" aria-hidden="true" />
-
-        {/* Layered Images */}
-        <div className="absolute inset-0">
-          <Image src={daySrc} alt="" fill unoptimized className="object-cover object-top pixelated" style={{ imageRendering: "pixelated" }} />
-          <Image src={nightSrc} alt="" fill unoptimized className="object-cover object-top pixelated opacity-0 dark:opacity-100 transition-opacity duration-1000" style={{ imageRendering: "pixelated" }} />
-        </div>
+        {placeholders}
+        
+        <div 
+          className="absolute inset-0 bg-repeat-x bg-top bg-size-[auto_100%] pixelated" 
+          style={{ backgroundImage: `url(${daySrc})`, imageRendering: "pixelated" }} 
+        />
+        <div 
+          className="absolute inset-0 bg-repeat-x bg-top bg-size-[auto_100%] pixelated opacity-0 dark:opacity-100 transition-opacity duration-1000" 
+          style={{ backgroundImage: `url(${nightSrc})`, imageRendering: "pixelated" }} 
+        />
       </div>
 
       {/* Duplicate Segment */}
       <div className="relative flex h-full shrink-0 -translate-x-px" aria-hidden="true">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={daySrc} alt="" className="h-full w-auto max-w-none opacity-0 pointer-events-none" aria-hidden="true" />
-
-        <div className="absolute inset-0">
-          <Image src={daySrc} alt="" fill unoptimized className="object-cover object-top pixelated" style={{ imageRendering: "pixelated" }} />
-          <Image src={nightSrc} alt="" fill unoptimized className="object-cover object-top pixelated opacity-0 dark:opacity-100 transition-opacity duration-1000" style={{ imageRendering: "pixelated" }} />
-        </div>
+        {placeholders}
+        
+        <div 
+          className="absolute inset-0 bg-repeat-x bg-top bg-size-[auto_100%] pixelated" 
+          style={{ backgroundImage: `url(${daySrc})`, imageRendering: "pixelated" }} 
+        />
+        <div 
+          className="absolute inset-0 bg-repeat-x bg-top bg-size-[auto_100%] pixelated opacity-0 dark:opacity-100 transition-opacity duration-1000" 
+          style={{ backgroundImage: `url(${nightSrc})`, imageRendering: "pixelated" }} 
+        />
       </div>
     </div>
   );
@@ -78,7 +88,6 @@ export default function ThemeBackground() {
             className="theme-sprite relative z-10 transition-transform duration-300"
           />
         </div>
-
       </div>
 
       {/* CLOUDS LAYER: z-[-1] */}
