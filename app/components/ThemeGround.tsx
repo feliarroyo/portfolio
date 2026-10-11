@@ -27,21 +27,21 @@ export default function ThemeGround({ children }: { children: React.ReactNode })
                 className="relative w-full pixelated"
                 style={{ height: `${grassHeight}px` }}
             >
-                {/* Base Layer: Night Grass (Always 100% opaque, covered by day grass) */}
+                {/* Day Grass */}
                 <div
                     className="absolute inset-0 bg-repeat-x bg-bottom pixelated"
                     style={{
-                        backgroundImage: "url('/images/foreground/night-grass-tile.png')",
+                        backgroundImage: "url('/images/foreground/day-grass-tile.png')",
                         backgroundSize: `${grassWidth}px ${grassHeight}px`,
                         imageRendering: "pixelated",
                     }}
                 />
 
-                {/* Top Layer: Day Grass (Fades out smoothly when dark mode activates) */}
+                {/* Night Grass */}
                 <div
                     className="absolute inset-0 bg-repeat-x bg-bottom pixelated opacity-0 dark:opacity-100 transition-opacity duration-1000"
                     style={{
-                        backgroundImage: "url('/images/foreground/day-grass-tile.png')",
+                        backgroundImage: "url('/images/foreground/night-grass-tile.png')",
                         backgroundSize: `${grassWidth}px ${grassHeight}px`,
                         imageRendering: "pixelated",
                     }}
