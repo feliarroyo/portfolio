@@ -1,7 +1,7 @@
 import React from "react";
 
 interface OverlayButtonProps {
-    onClick: () => void;
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
     variant?: "close" | "back";
     className?: string;
     ariaLabel?: string;

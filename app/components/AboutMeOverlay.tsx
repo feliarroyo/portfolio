@@ -68,6 +68,15 @@ function AboutDialogContent({
 
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [isFastForward, setIsFastForward] = useState<boolean>(false);
+  
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  if (isOpen !== prevIsOpen) {
+    setPrevIsOpen(isOpen);
+    if (isOpen) {
+      setCurrentPage(0);
+      setIsFastForward(false);
+    }
+  }
 
   const topicTitles: Record<Topic, string> = {
     intro: t.nav.intro,
@@ -144,14 +153,6 @@ function AboutDialogContent({
         }
       `}</style>
 
-      {/* Close Button */}
-      <OverlayButton
-        variant="close"
-        onClick={onClose}
-        className="-top-12 right-0 sm:-top-12 md:-left-14 md:top-0"
-        ariaLabel="Close About Me"
-      />
-
       {/* Desktop Left Arrow Zone */}
       {canGoPrev && (
         <button
@@ -179,6 +180,17 @@ function AboutDialogContent({
         onClick={() => setIsFastForward(true)}
         className="relative w-full h-96 sm:h-55 bg-[#fdfaf3] dark:bg-slate-900 border-4 border-slate-900 dark:border-slate-500 shadow-[10px_10px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[10px_10px_0px_0px_rgba(0,0,0,0.8)] p-4 sm:p-5 flex flex-col justify-between overflow-hidden cursor-pointer select-none"
       >
+        {/* Mobile Close Button (Top Right inside dialog) */}
+        <OverlayButton
+          variant="close"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+          className="sm:hidden absolute top-2 right-2 z-30 scale-75"
+          ariaLabel="Close About Me"
+        />
+
         {/* Main Content Area */}
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 grow overflow-hidden h-full">
           
@@ -242,7 +254,7 @@ function AboutDialogContent({
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-3 pt-3 border-t-2 border-slate-200 dark:border-slate-700 flex items-center justify-between z-10 shrink-0">
+        <div className="mt-1.5 pt-1.5 border-t-2 border-slate-200 dark:border-slate-700 flex items-center justify-between z-10 shrink-0">
           
           {/* Section Switcher */}
           <div className="flex items-center gap-1.5 sm:gap-2">
@@ -255,7 +267,7 @@ function AboutDialogContent({
                     e.stopPropagation();
                     handleTopicChange(topic);
                   }}
-                  className={`px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider border-2 transition-colors cursor-pointer ${
+                  className={`px-2.5 sm:px-3 py-0.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider border-2 transition-colors cursor-pointer ${
                     activeTopic === topic
                       ? "bg-slate-900 text-white border-slate-900 dark:bg-slate-200 dark:text-slate-900 dark:border-slate-200"
                       : "bg-transparent text-slate-700 border-slate-600 hover:bg-slate-200 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800"
@@ -267,33 +279,46 @@ function AboutDialogContent({
             </div>
 
             {/* Mobile Title View */}
-            <div className="sm:hidden px-2 py-1">
+            <div className="sm:hidden px-2 py-0.5">
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-900 dark:text-slate-200">
                 {topicTitles[activeTopic]}
               </span>
             </div>
           </div>
 
-          {/* Global Page Counter & Dots */}
-          {totalPages > 1 && (
-            <div className="flex items-center gap-2 sm:gap-3">
-              <span className="text-[11px] sm:text-xs font-mono font-bold text-slate-600 dark:text-slate-400">
-                {currentPage + 1}/{totalPages}
-              </span>
-              <div className="flex gap-1 sm:gap-1.5 items-center">
-                {pages.map((_, idx) => (
-                  <span
-                    key={idx}
-                    className={`inline-block w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-colors ${
-                      currentPage === idx
-                        ? "bg-slate-800 dark:bg-slate-200"
-                        : "bg-slate-300 dark:bg-slate-600"
-                    }`}
-                  />
-                ))}
+          {/* Global Page Counter, Dots & Desktop Close Button */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            {totalPages > 1 && (
+              <div className="flex items-center gap-2 sm:gap-3">
+                <span className="text-[11px] sm:text-xs font-mono font-bold text-slate-600 dark:text-slate-400">
+                  {currentPage + 1}/{totalPages}
+                </span>
+                <div className="flex gap-1 sm:gap-1.5 items-center">
+                  {pages.map((_, idx) => (
+                    <span
+                      key={idx}
+                      className={`inline-block w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-colors ${
+                        currentPage === idx
+                          ? "bg-slate-800 dark:bg-slate-200"
+                          : "bg-slate-300 dark:bg-slate-600"
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
+            
+            {/* Desktop Close Button */}
+            <OverlayButton
+              variant="close"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
+              className="hidden sm:block static scale-70"
+              ariaLabel="Close About Me"
+            />
+          </div>
         </div>
       </div>
     </div>
