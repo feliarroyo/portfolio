@@ -58,10 +58,10 @@ export default function ProjectDetailOverlay() {
 
   return (
     <div
-      className={`fixed inset-0 z-999 flex justify-center p-4 sm:p-8 pt-28 sm:pt-28 transition-transform duration-500 ease-in-out ${isOpen ? "translate-y-0" : "-translate-y-full"
+      className={`fixed inset-0 z-50 pointer-events-none flex justify-center p-4 sm:p-8 pt-28 sm:pt-28 transition-transform duration-500 ease-in-out ${isOpen ? "translate-y-0" : "-translate-y-full"
         }`}
     >
-      <div className="relative w-full max-w-5xl h-full flex flex-col">
+      <div className="relative w-full max-w-5xl h-full flex flex-col pointer-events-auto">
         {displayProject && (
           <>
             {/* Title Label & Back Button Group */}
