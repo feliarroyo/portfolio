@@ -31,7 +31,7 @@ export default function LanguageToggle({ className }: LanguageToggleProps) {
               transform: `rotate(${rotation}deg)`,
               transition: "transform 600ms ease-in-out"
             }}
-            className="flex items-center justify-center"
+            className="flex items-center justify-center pointer-events-auto"
           >
             <Image
               src="/images/icons/lang_toggle.png"

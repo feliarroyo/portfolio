@@ -31,7 +31,7 @@ export default function DarkModeToggle({ className }: DarkModeToggleProps) {
         <button
           id="theme-toggle-btn"
           onClick={() => setTheme(isDark ? 'light' : 'dark')}
-          className="block cursor-pointer relative w-13.5 h-13.5 focus:outline-none bg-transparent border-none"
+          className="block cursor-pointer relative w-13.5 h-13.5 focus:outline-none bg-transparent border-none pointer-events-auto"
           aria-label={t.nav.toggleTheme}
         />
       </Tooltip>

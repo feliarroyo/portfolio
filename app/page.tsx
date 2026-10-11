@@ -21,8 +21,8 @@ export default function Home() {
       <ThemeBackground />
       {/* TOP ROW: config icons and social media links */}
       <header className="relative z-60 pointer-events-none grid grid-cols-3 w-full items-start p-4 sm:p-8">
-        <div className="flex justify-start pointer-events-auto"><LanguageToggle /></div>
-        <div className="flex justify-center pointer-events-auto"><DarkModeToggle /></div>
+        <div className="flex justify-start"><LanguageToggle /></div>
+        <div className="flex justify-center"><DarkModeToggle /></div>
         <div className="hidden sm:flex justify-end pointer-events-auto"><SocialMediaIcons /></div>
       </header>
 
