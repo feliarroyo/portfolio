@@ -65,7 +65,15 @@ export default function ProjectDetailOverlay() {
         {displayProject && (
           <>
             {/* Title Label & Back Button Group */}
-            <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-20 bg-orange-400 dark:bg-orange-400 border-4 border-slate-900 px-4 sm:px-8 py-2 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.8)] w-[85%] sm:w-auto flex justify-center text-center">
+            <div
+              className="absolute -top-6 left-1/2 -translate-x-1/2 z-20 px-4 sm:px-8 py-2 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.8)] w-[85%] sm:w-auto flex justify-center text-center"
+              style={{
+                borderImage: "url('assets/tooltip-sprite.png') 4 fill",
+                borderWidth: "4px",
+                borderStyle: "solid",
+                imageRendering: "pixelated"
+              }}
+            >
 
               {/* Back Button */}
               <OverlayButton
