@@ -15,19 +15,19 @@ The site has been designed as an interactive single-page application that contra
 | :---: | :---: |
 | ![Projects Drawer Preview](/public/images/readme/preview-projects.png) | ![Detail Overlay Preview](/public/images/readme/preview-detail.png) |
 
+| About Me | Mobile View |
+| :---: | :---: |
+| ![Projects Drawer Preview](/public/images/readme/preview-aboutme.png) | ![Detail Overlay Preview](/public/images/readme/preview-mobile.gif) |
+
 ## Features
 
 - **Retro Pixel Art Style:** With a mix of free assets and some custom-made ones, the site boasts a colorful design resembling a platforming game, with a focus on readability, originality and creativity.
 - **Dark Mode Toggle:** Implemented using [next-themes](https://github.com/pacocoursey/next-themes). Click on the Sun/Moon sprite to change the theme. The background sprites have been edited to reflect the time of the day, and the toggles are animated to go with it, making the change feel organic.
 - **Language Toggle:** Implemented via context toggling. Click on the Earth icon to change the language of the page: Spanish and English are currently supported.
-- **Project Subpages:** Subpages for each project have been implemented, detailing the project description, tech stack used, and links to the project repository or live demo. These appear as overlays, to provide a fluid user experience.
+- **Project Subpages:** Subpages for each project have been implemented, detailing the project description, tech stack used, and links to the project repository or live demo. Each subpage also includes screenshots and videos whenever possible, to showcase the work done and the final result. These appear as overlays, to provide a fluid user experience.
+- **About Me Information Tabs:** About Me section with tabs to display information about the developer. The content is organized into pages, with a typewriting-style animation following the game theme.
 - **Relevant Links:** Social Media and CV links have been added using pixel art icons, keeping with the theme of the site. These links open on a new tab, not affecting the page state.
-
-## Planned Features
-
-- [ ] **Expanded Project Media:** Add screenshots and videos whenever possible to each project subpage, to showcase the work done and the final result.
-- [ ] **Mobile Text Indicators:** Repurpose tooltips so that mobile users can see the text for each interactive element, since hover is not available on mobile devices.
-- [ ] **Toggleable SFX:** Sound Effects would add to the site feel, but they should be toggleable and disabled by default to not annoy users.
+- **Enhanced Mobile Experience:** The site features tooltips that appear on hover to explain each interactive element. On mobile, these tooltips are always on to enhance mobile experience.
 
 ## How to run
 
@@ -52,9 +52,10 @@ Alternatively, the project is currently deployed using Vercel on [this link](htt
 This portfolio uses the following assets, which are credited to their respective authors:
 
 - Mail, Phone, GitHub and LinkedIn button sprites: [Pixel Art Social Media Icon](https://joi3.itch.io/pixel-art-social-media-icon) by [JOI3](https://joi3.itch.io/)
-- CV, Earth, Sun and Moon sprites: [320 Pixel Emojis](https://joi3.itch.io/joi3s-free-pixel-art-emoji-icon) by [JOI3](https://joi3.itch.io/)
-- Background sprites: [Free Sky Backgrounds](https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set) by [CraftPix.net](https://craftpix.net/)
-- Tooltip, close/back button sprites: [Complete UI Essential Pack](https://crusenho.itch.io/complete-ui-essential-pack)
-- (Not yet used): [Justin's 16x16 Icons](https://zeromatrix.itch.io/rpgiab-icons)
+- CV, Earth, Documents, Sun and Moon sprites: [320 Pixel Emojis](https://joi3.itch.io/joi3s-free-pixel-art-emoji-icon) by [JOI3](https://joi3.itch.io/)
+- Background clouds and sky: [Free Sky Backgrounds](https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set) by [CraftPix.net](https://craftpix.net/)
+- Tooltips, close/back button, and other UI sprites: [Complete UI Essential Pack](https://crusenho.itch.io/complete-ui-essential-pack)
+- Ground floor sprites: [Brackeys' Platformer Bundle](https://brackeysgames.itch.io/brackeys-platformer-bundle) by [Brackeys](https://brackeysgames.itch.io/)
+- Chest sprites: [2D Pixel Dungeon Asset Pack](https://pixel-poem.itch.io/dungeon-assetpuck) by [Pixel_Poem](https://pixel-poem.itch.io/)
 
 Some of the assets listed were modified or expanded (e.g. adding animation) to fit the requirements of the website, always following the associated license.
