@@ -138,15 +138,15 @@ export default function ProjectDetailOverlay() {
 
                   {/* Gallery Section */}
                   {mediaUrls.length > 0 && (
-                    <div className="flex overflow-x-auto gap-4 p-2 snap-x snap-mandatory items-center">
+                    <div className="flex overflow-x-auto gap-4 p-2 snap-x snap-mandatory items-center w-full">
                       {mediaUrls.map((url, index) => {
                         const youtubeEmbedUrl = getYouTubeEmbedUrl(url);
 
                         return youtubeEmbedUrl ? (
-                          /* Video Container: Fixed aspect ratio */
+                          /* Video Container */
                           <div
                             key={index}
-                            className="shrink-0 h-48 md:h-64 aspect-video relative snap-center border-4 border-gray-800 bg-black"
+                            className="shrink-0 w-[85vw] max-w-full sm:w-auto h-56 sm:h-64 md:h-72 aspect-video relative snap-center border-4 border-gray-800 bg-black"
                           >
                             <iframe
                               src={youtubeEmbedUrl}
@@ -157,19 +157,19 @@ export default function ProjectDetailOverlay() {
                             />
                           </div>
                         ) : (
-                          /* Image Container: Auto width to eliminate black bars */
+                          /* Image Container */
                           <div
                             key={index}
-                            className="shrink-0 h-48 md:h-64 relative snap-center border-4 border-gray-800 bg-black cursor-pointer hover:scale-[1.02] transition-transform"
+                            className="shrink-0 w-[85vw] max-w-full sm:w-auto h-56 sm:h-64 md:h-72 relative snap-center border-4 border-gray-800 bg-black cursor-pointer hover:scale-[1.02] transition-transform flex items-center justify-center overflow-hidden"
                             onClick={() => setExpandedImage(url)}
                           >
                             <Image
                               src={url}
                               alt={`${title} media ${index + 1}`}
-                              width={0}
-                              height={0}
-                              sizes="(max-width: 768px) 100vw, 400px"
-                              className="w-auto h-full object-contain"
+                              width={1200}
+                              height={800}
+                              sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 600px"
+                              className="w-full sm:w-auto h-full object-contain"
                             />
                           </div>
                         );
@@ -180,31 +180,31 @@ export default function ProjectDetailOverlay() {
                   {/* Full-size Image Lightbox Overlay */}
                   {expandedImage && (
                     <div
-                      className="fixed inset-0 z-9999 flex items-center justify-center bg-black/80 p-4 md:p-12 cursor-pointer"
+                      className="fixed inset-0 z-9999 flex items-center justify-center bg-black/80 p-3 sm:p-6 md:p-12 cursor-pointer"
                       onClick={() => setExpandedImage(null)}
                     >
                       {/* Framed Container */}
                       <div
-                        className="relative bg-[#e6e6e6] dark:bg-gray-800 border-4 border-black dark:border-white p-3 md:p-5 shadow-[8px_8px_0_0_rgba(0,0,0,1)] cursor-default flex flex-col items-center justify-center max-w-[95vw] max-h-[95vh]"
-                        onClick={(e) => e.stopPropagation()} // Prevents closing when clicking inside the frame
+                        className="relative bg-[#e6e6e6] dark:bg-gray-800 border-4 border-black dark:border-white p-3 md:p-5 shadow-[8px_8px_0_0_rgba(0,0,0,1)] cursor-default flex flex-col items-center justify-center w-[92vw] sm:w-auto max-w-[95vw] max-h-[92vh]"
+                        onClick={(e) => e.stopPropagation()}
                       >
                         {/* Close Button */}
                         <OverlayButton
                           variant="close"
                           onClick={() => setExpandedImage(null)}
-                          className="-top-5 -right-5 md:-top-6 md:-right-6 md:w-12 md:h-12 z-50"
+                          className="-top-4 -right-4 sm:-top-5 sm:-right-5 md:-top-6 md:-right-6 md:w-12 md:h-12 z-50"
                           ariaLabel="Close Image"
                         />
 
                         {/* Constrained Image */}
-                        <div className="relative flex justify-center items-center max-h-[80vh]">
+                        <div className="relative flex justify-center items-center w-full max-h-[80vh]">
                           <Image
                             src={expandedImage}
                             alt="Expanded project view"
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            className="w-auto h-auto max-w-[85vw] max-h-[80vh] object-contain"
+                            width={1600}
+                            height={1000}
+                            sizes="95vw"
+                            className="w-full h-auto max-h-[78vh] object-contain"
                           />
                         </div>
                       </div>
