@@ -1,4 +1,3 @@
-// context/UIContext.tsx
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
@@ -18,13 +17,32 @@ interface UIContextType {
 const UIContext = createContext<UIContextType | undefined>(undefined);
 
 export function UIProvider({ children }: { children: ReactNode }) {
-  const [isProjectsOpen, setProjectsOpen] = useState(false);
-  const [isAboutOpen, setAboutOpen] = useState(false);
+  const [isProjectsOpen, setProjectsOpenState] = useState(false);
+  const [isAboutOpen, setAboutOpenState] = useState(false);
   const [isAboutTyping, setAboutTyping] = useState(false);
   const [activeProject, setActiveProject] = useState<ProjectItem | null>(null);
 
+  const setProjectsOpen = (isOpen: boolean) => {
+    if (isOpen && isAboutOpen) return;
+    setProjectsOpenState(isOpen);
+  };
+
+  const setAboutOpen = (isOpen: boolean) => {
+    if (isOpen && isProjectsOpen) return;
+    setAboutOpenState(isOpen);
+  };
+
   return (
-    <UIContext.Provider value={{ isProjectsOpen, setProjectsOpen, isAboutOpen, setAboutOpen, isAboutTyping, setAboutTyping, activeProject, setActiveProject }}>
+    <UIContext.Provider value={{ 
+      isProjectsOpen, 
+      setProjectsOpen, 
+      isAboutOpen, 
+      setAboutOpen, 
+      isAboutTyping, 
+      setAboutTyping, 
+      activeProject, 
+      setActiveProject 
+    }}>
       {children}
     </UIContext.Provider>
   );
