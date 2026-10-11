@@ -14,7 +14,7 @@ export default function Home() {
   const { t } = useLanguage();
 
   const titleText = t?.nav?.title || "Felipe Arroyo";
-  const subtitleText = t?.nav?.subtitle || "Systems Engineer | Backend Developer";
+  const subtitleText = t?.nav?.subtitle || "Software Developer";
 
   return (
     <div className="flex flex-col min-h-screen font-sans">
@@ -26,23 +26,27 @@ export default function Home() {
         <div className="hidden sm:flex justify-end pointer-events-auto"><SocialMediaIcons /></div>
       </header>
 
-      {/* MIDDLE ROW: flex-grow pushes the header up and footer down */}
-      <main className="flex flex-col items-center justify-center grow p-4 sm:p-8 z-10">
-        <h1
-          suppressHydrationWarning
-          className="text-4xl text-black dark:text-gray-100 mb-4 crisp-pixel-font text-center"
-        >
-          {titleText}
-        </h1>
-        <h2
-          suppressHydrationWarning
-          className="text-2xl text-black dark:text-gray-100 mb-4 crisp-pixel-font text-center"
-        >
-          {subtitleText}
-        </h2>
-        {/* Visible only on mobile/small screens */}
-        <div className="sm:hidden flex justify-center mt-4 pointer-events-auto relative z-60">
-          <SocialMediaIcons />
+      {/* MIDDLE ROW */}
+      <main className="grow pointer-events-none z-10">
+        <div className="fixed inset-0 flex flex-col items-center justify-center p-4 pointer-events-none">
+          <div className="flex flex-col items-center justify-center text-center">
+            <h1
+              suppressHydrationWarning
+              className="text-4xl text-black dark:text-gray-100 mb-4 crisp-pixel-font text-center"
+            >
+              {titleText}
+            </h1>
+            <h2
+              suppressHydrationWarning
+              className="text-2xl text-black dark:text-gray-100 crisp-pixel-font text-center"
+            >
+              {subtitleText}
+            </h2>
+            {/* Visible only on mobile/small screens */}
+            <div className="sm:hidden flex justify-center mt-4 pointer-events-auto relative z-60">
+              <SocialMediaIcons />
+            </div>
+          </div>
         </div>
       </main>
 
