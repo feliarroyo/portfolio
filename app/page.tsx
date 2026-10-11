@@ -48,8 +48,8 @@ export default function Home() {
 
       {/* BOTTOM ROW: selectable objects on the ground */}
       <ThemeGround>
-        <AboutMeButton />
         <ProjectsButton />
+        <AboutMeButton />
         <CVButton />
       </ThemeGround>
     </div>
