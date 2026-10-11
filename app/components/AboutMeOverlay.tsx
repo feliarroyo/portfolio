@@ -315,7 +315,7 @@ function AboutDialogContent({
                 e.stopPropagation();
                 onClose();
               }}
-              className="hidden sm:block static scale-70"
+              className="hidden sm:block static scale-70 hover:scale-85!"
               ariaLabel="Close About Me"
             />
           </div>
