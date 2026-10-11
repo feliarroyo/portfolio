@@ -17,7 +17,7 @@ export default function OverlayButton({
 }: OverlayButtonProps) {
 
     const spriteUrl = variant === "close" ? "url('/assets/close.png')" : "url('/assets/back.png')";
-    const defaultStyles = "bg-white dark:bg-slate-800 border-4 border-slate-900 dark:border-slate-300 cursor-pointer shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] w-12 h-12";
+    const defaultStyles = "bg-white dark:bg-slate-800 border-4 border-slate-900 dark:border-slate-300 cursor-pointer shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] w-12 h-12 transition-all duration-75 hover:scale-110 active:translate-x-[4px] active:translate-y-[4px] active:shadow-none dark:active:shadow-none";
 
     const appliedStyles = customStyles || defaultStyles;
 
