@@ -79,7 +79,7 @@ export default function ProjectDetailOverlay() {
               <OverlayButton
                 variant="back"
                 onClick={() => setActiveProject(null)}
-                className="absolute top-1/2 -translate-y-1/2 -left-12 sm:-left-16 md:-left-20"
+                className="absolute -left-12 sm:-left-16 md:-left-20"
                 ariaLabel="Back to Projects"
               />
 
