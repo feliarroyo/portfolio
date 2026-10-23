@@ -6,6 +6,7 @@ import { useLanguage } from "../context/LanguageContext";
 import Image from "next/image";
 import TechBadge from "../components/TechBadge";
 import OverlayButton from "./OverlayButton";
+import { playSound } from "../utils/sound";
 
 // Helper function to identify YouTube URLs and show them as embeds
 const getYouTubeEmbedUrl = (url: string) => {
@@ -78,7 +79,7 @@ export default function ProjectDetailOverlay() {
               {/* Back Button */}
               <OverlayButton
                 variant="back"
-                onClick={() => setActiveProject(null)}
+                onClick={() => {playSound('close'); setActiveProject(null)}}
                 className="absolute -left-12 sm:-left-16 md:-left-20"
                 ariaLabel="Back to Projects"
               />

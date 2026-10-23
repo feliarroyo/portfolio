@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Tooltip from "./Tooltip";
 import { useLanguage } from "../context/LanguageContext";
+import { playSound } from "../utils/sound";
 
 interface SocialMediaIconsProps {
   className?: string;
@@ -47,6 +48,7 @@ export default function SocialMediaIcons({ className }: SocialMediaIconsProps) {
                 alt={link.alt} 
                 width={48} 
                 height={48} 
+                onClick={() => {playSound('click')}}
                 unoptimized 
                 style={{ imageRendering: 'pixelated' }}
               />

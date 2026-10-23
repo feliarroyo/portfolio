@@ -5,6 +5,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { ProjectItem } from "../content/project_registry";
 import { useUI } from "../context/UIContext";
 import TechBadge from "./TechBadge";
+import { playSound } from "../utils/sound";
 
 interface ProjectCardProps {
   project: ProjectItem;
@@ -22,7 +23,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <div
-      onClick={() => setActiveProject(project)}
+      onClick={() => {
+        playSound('open');
+        setActiveProject(project);
+      }}
       className={`group flex flex-col border-4 border-slate-500 dark:border-slate-500 overflow-hidden hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer ${contentBg}`}
     >
 

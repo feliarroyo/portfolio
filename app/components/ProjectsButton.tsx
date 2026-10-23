@@ -5,6 +5,7 @@ import Tooltip from "./Tooltip";
 import { useLanguage } from "../context/LanguageContext";
 import { useUI } from "../context/UIContext";
 import Image from "next/image";
+import { playSound } from "../utils/sound";
 
 type ChestState = "idle" | "hover" | "opening" | "opened";
 
@@ -85,6 +86,7 @@ export default function ProjectsButton() {
 
     const handleClick = () => {
         if (state !== "opened" && state !== "opening") {
+            playSound('chest');
             setState("opening");
             setFrame(0);
         }

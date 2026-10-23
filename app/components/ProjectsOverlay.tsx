@@ -5,6 +5,7 @@ import { PORTFOLIO_PROJECTS } from "../content/project_registry";
 import ProjectCard from "./ProjectCard";
 import { useLanguage } from "../context/LanguageContext";
 import OverlayButton from "./OverlayButton";
+import { playSound } from "../utils/sound";
 
 export default function ProjectsOverlay() {
   const { isProjectsOpen, setProjectsOpen, activeProject } = useUI();
@@ -42,7 +43,7 @@ export default function ProjectsOverlay() {
 
           <OverlayButton
             variant="close"
-            onClick={() => setProjectsOpen(false)}
+            onClick={() => {playSound('close'); setProjectsOpen(false)}}
             className="static shrink-0"
             ariaLabel="Close Projects"
           />
