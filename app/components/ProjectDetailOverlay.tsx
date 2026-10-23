@@ -168,7 +168,7 @@ export default function ProjectDetailOverlay() {
                           /* Image Container */
                           <div
                             key={index}
-                            className="shrink-0 w-[85vw] max-w-full sm:w-auto h-56 sm:h-64 md:h-72 relative snap-center border-4 border-gray-800 bg-black cursor-pointer hover:scale-[1.02] transition-transform flex items-center justify-center overflow-hidden"
+                            className="shrink-0 w-[85vw] max-w-full sm:w-auto h-56 sm:h-64 md:h-72 relative snap-center border-4 border-gray-800 bg-[#e6e6e6] dark:bg-gray-800 cursor-pointer hover:scale-[1.02] transition-transform flex items-center justify-center overflow-hidden"
                             onClick={() => setExpandedImage(url)}
                           >
                             <Image
