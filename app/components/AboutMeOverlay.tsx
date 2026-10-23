@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useUI } from "../context/UIContext";
 import { useLanguage } from "../context/LanguageContext";
 import OverlayButton from "./OverlayButton";
+import { playSound, playDialogueBlip } from "../utils/sound";
 
 type Topic = "intro" | "tech" | "education" | "myLanguage";
 
@@ -48,12 +49,21 @@ function TypewriterText({
   useEffect(() => {
     if (isFinished || !isActive) return;
 
+    const nextChar = text[charCount];
+    const isWhitespace = /\s/.test(nextChar || "");
+
+    if (!isFastForward && !isWhitespace && charCount % 2 === 0) {
+      playDialogueBlip("/sounds/blip.wav", 0.03);
+    }
+    else if (isFastForward && !isWhitespace && charCount % 4 === 0) { // Lower cadence when fast-forwarding
+      playDialogueBlip("/sounds/blip.wav", 0.03);
+    }
     const timer = setTimeout(() => {
       setCharCount((c) => c + 1);
     }, speed);
 
     return () => clearTimeout(timer);
-  }, [charCount, text.length, speed, isFinished, isActive]);
+  }, [charCount, text.length, speed, isFinished, isActive, isFastForward, text]);
 
   const tokens = useMemo(() => {
     return Array.from(text.matchAll(/\S+|\s+/g), (match) => {
@@ -383,6 +393,7 @@ export default function AboutOverlay() {
   const { isAboutOpen, setAboutOpen, setAboutTyping } = useUI();
 
   const handleClose = () => {
+    playSound('close');
     setAboutOpen(false);
     setAboutTyping(false);
   };
