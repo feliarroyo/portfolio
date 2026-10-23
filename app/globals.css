@@ -67,3 +67,28 @@ body:has(#theme-toggle-btn:hover) .theme-sprite {
 .animate-clouds-fast {
   animation: infinite-cloud-scroll 200s linear infinite;
 }
+
+/* Transitions for mobile ground */
+
+@keyframes grass-day-to-night {
+  from { background-position-y: 0px; }
+  to { background-position-y: -168px; }
+}
+
+@keyframes grass-night-to-day {
+  from { background-position-y: -168px; }
+  to { background-position-y: 0px; }
+}
+
+.mobile-grass-tile {
+  background-image: url('/images/foreground/mobile-grass-transition.png');
+  background-size: 48px 224px;
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  animation: grass-night-to-day 0.6s steps(3) forwards;
+  image-rendering: pixelated;
+}
+
+:is(.dark) .mobile-grass-tile {
+  animation: grass-day-to-night 0.6s steps(3) forwards;
+}

@@ -24,7 +24,7 @@ export default function ThemeGround({ children }: { children: React.ReactNode })
 
             {/* Grass tiles replicate on the top of the floor */}
             <div
-                className="relative w-full pixelated"
+                className="hidden md:block relative w-full"
                 style={{ height: `${grassHeight}px` }}
             >
                 {/* Day Grass */}
@@ -46,6 +46,11 @@ export default function ThemeGround({ children }: { children: React.ReactNode })
                         imageRendering: "pixelated",
                     }}
                 />
+            </div>
+
+            {/* MOBILE GROUND: Single layer driven by the vertical spritesheet */}
+            <div className="block md:hidden relative w-full" style={{ height: `${grassHeight}px` }}>
+                <div className="mobile-grass-tile absolute inset-0 bg-repeat-x bg-top pixelated" />
             </div>
 
 
