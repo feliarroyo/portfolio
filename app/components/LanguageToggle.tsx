@@ -4,6 +4,7 @@ import Image from "next/image";
 import Tooltip from "./Tooltip";
 import { useLanguage } from "../context/LanguageContext";
 import { useState } from "react";
+import { playSound } from "../utils/sound";
 
 interface LanguageToggleProps {
   className?: string;
@@ -15,6 +16,7 @@ export default function LanguageToggle({ className }: LanguageToggleProps) {
   const [rotation, setRotation] = useState(0);
 
   const toggleLanguage = () => {
+    playSound('language');
     setRotation((prev) => prev + 360);
     setLanguage(language === "en" ? "es" : "en");
   };
