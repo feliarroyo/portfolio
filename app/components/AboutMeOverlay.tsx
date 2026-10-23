@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import { useUI } from "../context/UIContext";
 import { useLanguage } from "../context/LanguageContext";
@@ -9,6 +9,18 @@ import OverlayButton from "./OverlayButton";
 type Topic = "intro" | "tech" | "education" | "myLanguage";
 
 const TOPICS: Topic[] = ["intro", "tech", "education", "myLanguage"];
+
+function Cursor({ isFinished }: { isFinished: boolean }) {
+  return (
+    <span className="relative inline-block w-0 align-middle">
+      <span
+        className={`absolute left-0.5 top-1/2 -translate-y-1/2 w-2 h-4 sm:w-2.5 sm:h-5 bg-slate-800 dark:bg-slate-200 pointer-events-none select-none ${
+          isFinished ? "animate-pulse" : ""
+        }`}
+      />
+    </span>
+  );
+}
 
 function TypewriterText({
   text,
@@ -43,14 +55,53 @@ function TypewriterText({
     return () => clearTimeout(timer);
   }, [charCount, text.length, speed, isFinished, isActive]);
 
+  const tokens = useMemo(() => {
+    return Array.from(text.matchAll(/\S+|\s+/g), (match) => {
+      const tokenText = match[0];
+      const start = match.index ?? 0;
+      return {
+        text: tokenText,
+        isSpace: /^\s+$/.test(tokenText),
+        start,
+        end: start + tokenText.length,
+      };
+    });
+  }, [text]);
+
   return (
     <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed font-mono">
-      {text.slice(0, charCount)}
-      <span
-        className={`inline-block w-2 h-4 sm:w-2.5 sm:h-5 bg-slate-800 dark:bg-slate-200 ml-1 align-middle ${
-          isFinished ? "animate-pulse" : ""
-        }`}
-      />
+      {tokens.length === 0 && <Cursor isFinished={isFinished} />}
+      {tokens.map((token) => {
+        const hasCursor =
+          (charCount === 0 && token.start === 0) ||
+          (charCount > token.start && charCount <= token.end);
+
+        const visibleLength = Math.max(
+          0,
+          Math.min(token.text.length, charCount - token.start)
+        );
+        const visibleText = token.text.slice(0, visibleLength);
+        const invisibleText = token.text.slice(visibleLength);
+
+        if (token.isSpace) {
+          return (
+            <span key={token.start}>
+              {visibleText}
+              {hasCursor && <Cursor isFinished={isFinished} />}
+              <span className="invisible">{invisibleText}</span>
+            </span>
+          );
+        }
+
+        // Words reserve their full bounding width up front to wrap before typing
+        return (
+          <span key={token.start} className="inline-block whitespace-nowrap">
+            <span>{visibleText}</span>
+            {hasCursor && <Cursor isFinished={isFinished} />}
+            <span className="invisible">{invisibleText}</span>
+          </span>
+        );
+      })}
     </p>
   );
 }
