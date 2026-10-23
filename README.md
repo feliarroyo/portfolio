@@ -57,5 +57,7 @@ This portfolio uses the following assets, which are credited to their respective
 - Tooltips, close/back button, and other UI sprites: [Complete UI Essential Pack](https://crusenho.itch.io/complete-ui-essential-pack)
 - Ground floor sprites: [Brackeys' Platformer Bundle](https://brackeysgames.itch.io/brackeys-platformer-bundle) by [Brackeys](https://brackeysgames.itch.io/)
 - Chest sprites: [2D Pixel Dungeon Asset Pack](https://pixel-poem.itch.io/dungeon-assetpuck) by [Pixel_Poem](https://pixel-poem.itch.io/)
+- Dialog blip sound: [Dialog Ad Sounds](https://ad-sounds.itch.io/dialog-text-sound-effects) by [AD Sounds](https://ad-sounds.itch.io/)
+- Other sound effects: Generated using [ChipTone](https://sfbgames.itch.io/chiptone) by [SFB Games](https://sfbgames.itch.io/)
 
 Some of the assets listed were modified or expanded (e.g. adding animation) to fit the requirements of the website, always following the associated license.
