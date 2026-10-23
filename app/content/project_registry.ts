@@ -49,13 +49,13 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         },
         description: {
             en: [
-                "Charades is a party game developed in Unity for Android devices, with support for PC versions as well.",
+                "Charades is a party game developed in Unity for Android devices, with support for PC as well.",
                 "Play the classic game about guessing a word or thing with help of one or more friends in over 100 different categories. It has a native category creator within the app, so you can create your own categories and share them easily.",
                 "The game supports multiple control schemes for mobile devices: answer using either the gyroscope or your phone's touchscreen (or both). On PC, play using arrow keys or the mouse.",
                 "It also contains multiple game modes: either play a quick round in a single category, a selection of rounds in a row, or even mashup many categories in a single chaotic round. All modes support 1v1 team mode as well, competing over who earns more points.",
             ],
             es: [
-                "Charadas es un juego para fiestas desarrollado en Unity para dispositivos Android, con versiones alternativas para PC también.",
+                "Charadas es un juego para fiestas desarrollado en Unity para dispositivos Android, además de contar con una versión alternativa para PC.",
                 "Juega el clásico juego de adivinar una palabra o cosa con la ayuda de uno o más amigos, con más de 100 categorías diferentes. Incluye un creador de categorías nativo dentro de la aplicación, por lo que puedes crear tus propias categorías y compartirlas fácilmente.",
                 "El juego admite múltiples esquemas de control para dispositivos móviles: responde usando el giroscopio o la pantalla táctil de tu teléfono (o ambos). En PC, juega usando las teclas de dirección o el mouse.",
                 "También contiene múltiples modos de juego: puedes jugar una ronda rápida en una sola categoría, una selección de rondas seguidas, o incluso combinar muchas categorías en una sola ronda caótica. Todos los modos admiten la modalidad 1v1 por equipos, compitiendo por quién obtiene más puntos.",
