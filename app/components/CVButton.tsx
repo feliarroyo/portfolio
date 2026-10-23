@@ -3,6 +3,7 @@
 import { useState, useEffect, useSyncExternalStore } from "react";
 import Tooltip from "./Tooltip";
 import { useLanguage } from "../context/LanguageContext";
+import { playSound } from "../utils/sound";
 
 export default function CVButton() {
     const { t } = useLanguage();
@@ -48,6 +49,7 @@ export default function CVButton() {
                 aria-label={t.nav.cv}
                 className="group flex items-center justify-center cursor-pointer select-none"
                 onMouseEnter={() => setIsHovered(true)}
+                onClick={() => playSound('click')}
                 onMouseLeave={() => {
                     setIsHovered(false);
                     setFrame(0);
