@@ -14,6 +14,8 @@ export type Dictionary = {
     techStack: string;
     education: string;
     myLanguage: string;
+    soundOn: string;
+    soundOff: string;
   },
   text: {
     aboutMeContent: string[];
@@ -39,7 +41,9 @@ export const translations: Record<"en" | "es", Dictionary> = {
       intro: "Intro.",
       techStack: "Tech Stack",
       education: "Education",
-      myLanguage: "Languages"
+      myLanguage: "Languages",
+      soundOn: "Enable Sound",
+      soundOff: "Mute Sound"
     },
     text: {
       aboutMeContent: ["Hello! I am Felipe Arroyo, a recently graduated Systems Engineer from UNICEN with a strong focus on backend and full-stack development.", "I am currently seeking opportunities to apply my technical knowledge in a dynamic environment and continue growing as a developer."],
@@ -63,7 +67,9 @@ export const translations: Record<"en" | "es", Dictionary> = {
       intro: "Intro.",
       techStack: "Stack tecn.",
       education: "Educación",
-      myLanguage: "Idiomas"
+      myLanguage: "Idiomas",
+      soundOn: "Activar sonido",
+      soundOff: "Silenciar"
     },
     text: {
       aboutMeContent: ["¡Hola! Soy Felipe Arroyo, un Ingeniero de Sistemas recientemente graduado de la UNICEN enfocado en el desarrollo backend y full-stack.", "Actualmente estoy en busca de oportunidades para demostrar mis conocimientos técnicos en un entorno dinámico, para así continuar creciendo como desarrollador."],
