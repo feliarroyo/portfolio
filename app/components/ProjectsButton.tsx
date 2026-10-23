@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import Tooltip from "./Tooltip";
 import { useLanguage } from "../context/LanguageContext";
 import { useUI } from "../context/UIContext";
@@ -12,9 +12,18 @@ type ChestState = "idle" | "hover" | "opening" | "opened";
 export default function ProjectsButton() {
     const [state, setState] = useState<ChestState>("idle");
     const [frame, setFrame] = useState(0);
-    const [hasHover, setHasHover] = useState(true);
     const { setProjectsOpen } = useUI();
     const { t } = useLanguage();
+
+    const hasHover = useSyncExternalStore(
+        (callback) => {
+            const mediaQuery = window.matchMedia("(hover: hover)");
+            mediaQuery.addEventListener("change", callback);
+            return () => mediaQuery.removeEventListener("change", callback);
+        },
+        () => window.matchMedia("(hover: hover)").matches,
+        () => true
+    );
 
     const FRAME_SIZE = 64;
 
@@ -54,18 +63,6 @@ export default function ProjectsButton() {
 
         return () => clearInterval(timer);
     }, [state, hasHover, setProjectsOpen]);
-
-    useEffect(() => {
-        // Check if the device's primary input mechanism supports hover (desktop)
-        const mediaQuery = window.matchMedia("(hover: hover)");
-        setHasHover(mediaQuery.matches);
-
-        // Listen for changes (e.g., rotating a 2-in-1 laptop into tablet mode)
-        const handler = (e: MediaQueryListEvent) => setHasHover(e.matches);
-        mediaQuery.addEventListener("change", handler);
-
-        return () => mediaQuery.removeEventListener("change", handler);
-    }, []);
 
     const row = state === "opening" || state === "opened" ? 1 : 0;
     const xPos = -frame * FRAME_SIZE;
