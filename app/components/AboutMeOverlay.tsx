@@ -6,9 +6,9 @@ import { useUI } from "../context/UIContext";
 import { useLanguage } from "../context/LanguageContext";
 import OverlayButton from "./OverlayButton";
 
-type Topic = "intro" | "tech" | "education";
+type Topic = "intro" | "tech" | "education" | "myLanguage";
 
-const TOPICS: Topic[] = ["intro", "tech", "education"];
+const TOPICS: Topic[] = ["intro", "tech", "education", "myLanguage"];
 
 function TypewriterText({
   text,
@@ -82,6 +82,7 @@ function AboutDialogContent({
     intro: t.nav.intro,
     tech: t.nav.techStack,
     education: t.nav.education,
+    myLanguage: t.nav.myLanguage
   };
 
   const pages: { topic: Topic; text: string }[] = [];
@@ -90,6 +91,7 @@ function AboutDialogContent({
     intro: t.text.aboutMeContent,
     tech: t.text.techStackContent,
     education: t.text.educationContent,
+    myLanguage: t.text.languageContent,
   };
 
   TOPICS.forEach((topic) => {

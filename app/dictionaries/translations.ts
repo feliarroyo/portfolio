@@ -13,11 +13,13 @@ export type Dictionary = {
     intro: string;
     techStack: string;
     education: string;
+    myLanguage: string;
   },
   text: {
     aboutMeContent: string[];
     techStackContent: string[];
     educationContent: string[];
+    languageContent: string[];
   }
 };
 
@@ -34,14 +36,16 @@ export const translations: Record<"en" | "es", Dictionary> = {
       projects: "Projects",
       cv: "Download CV",
       close: "Cerrar",
-      intro: "Introduction",
+      intro: "Intro.",
       techStack: "Tech Stack",
-      education: "Education"
+      education: "Education",
+      myLanguage: "Languages"
     },
     text: {
       aboutMeContent: ["Hello! I am Felipe Arroyo, a recently graduated Systems Engineer from UNICEN with a strong focus on backend and full-stack development.", "I am currently seeking opportunities to apply my technical knowledge in a dynamic environment and continue growing as a developer."],
       techStackContent: ["My core expertise lies in building robust and scalable applications using Java, Spring Boot, and PostgreSQL, while also designing intuitive web interfaces with Next.js, React, and Tailwind CSS.", "Other languages and frameworks I have experience with include Python, C#, and Unity."],
-      educationContent: ["I have a degree in Systems Engineering from UNICEN, where I gained a solid foundation in software development, algorithms, and data structures.", "During my studies, I completed various projects that allowed me to apply my knowledge in real-world scenarios, enhancing my problem-solving skills and technical proficiency."]
+      educationContent: ["I have a degree in Systems Engineering from UNICEN, where I gained a solid foundation in software development, algorithms, and data structures.", "During my studies, I completed various projects that allowed me to apply my knowledge in real-world scenarios, enhancing my problem-solving skills and technical proficiency."],
+      languageContent: ["I am fluent in Spanish (native) and English, with a strong command of both written and spoken technical discussion and communication.", "I hold a certified Cambridge C2 English level, and actively contribute to open translation projects in my spare time."]
     }
   },
   es: {
@@ -56,14 +60,16 @@ export const translations: Record<"en" | "es", Dictionary> = {
       projects: "Proyectos",
       cv: "Descargar CV",
       close: "Cerrar",
-      intro: "Introducción",
-      techStack: "Stack tecnológico",
-      education: "Educación"
+      intro: "Intro.",
+      techStack: "Stack tecn.",
+      education: "Educación",
+      myLanguage: "Idiomas"
     },
     text: {
       aboutMeContent: ["¡Hola! Soy Felipe Arroyo, un Ingeniero de Sistemas recientemente graduado de la UNICEN enfocado en el desarrollo backend y full-stack.", "Actualmente estoy en busca de oportunidades para demostrar mis conocimientos técnicos en un entorno dinámico, para así continuar creciendo como desarrollador."],
       techStackContent: ["Mi experiencia se radica principalmente en el desarrollo de aplicaciones robustas y escalables utilizando Java, Spring Boot y PostgreSQL, así como en el diseño de interfaces web intuitivas con Next.js, React y Tailwind CSS.", "Otros lenguajes y frameworks con los que tengo experiencia incluyen Python, C# y Unity."],
-      educationContent: ["Tengo un título en Ingeniería de Sistemas de la UNICEN, donde adquirí una base sólida en desarrollo de software, algoritmos y estructuras de datos.", "Durante mis estudios, completé diversos proyectos que me permitieron aplicar mi conocimiento en escenarios del mundo real, mejorando mis habilidades de resolución de problemas y proficiencia técnica."]
+      educationContent: ["Tengo un título en Ingeniería de Sistemas de la UNICEN, donde adquirí una base sólida en desarrollo de software, algoritmos y estructuras de datos.", "Durante mis estudios, completé diversos proyectos que me permitieron aplicar mi conocimiento en escenarios del mundo real, mejorando mis habilidades de resolución de problemas y proficiencia técnica."],
+      languageContent:  ["Soy bilingüe en español (nativo) e inglés, con fluidez para comunicarme en contextos técnicos tanto de manera escrita como oral.", "Cuento con certificación Cambridge de nivel C2 (Proficiency) y participo activamente en proyectos abiertos de traducción en mi tiempo libre."]
     }
   },
 };
