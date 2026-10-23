@@ -10,8 +10,8 @@ export default function CVButton() {
     const [frame, setFrame] = useState(0);
 
     const FRAME_SIZE = 64;
-    const TOTAL_FRAMES = 5;
-    const ANIMATION_INTERVAL = 200;
+    const TOTAL_FRAMES = 13;
+    const ANIMATION_INTERVAL = 150;
 
     const hasHover = useSyncExternalStore(
         (callback) => {
