@@ -26,6 +26,32 @@ const audioCache = new Map<string, HTMLAudioElement>();
 // Local storage key for SFX state
 const SFX_STORAGE_KEY = "portfolio_sfx_enabled";
 
+const sfxListeners = new Set<() => void>();
+
+/**
+ * Subscribe to sound effect toggle changes (supports both same-window and cross-tab updates).
+ */
+export function subscribeSfx(callback: () => void): () => void {
+  sfxListeners.add(callback);
+
+  const handleStorage = (e: StorageEvent) => {
+    if (e.key === SFX_STORAGE_KEY) {
+      callback();
+    }
+  };
+
+  if (typeof window !== "undefined") {
+    window.addEventListener("storage", handleStorage);
+  }
+
+  return () => {
+    sfxListeners.delete(callback);
+    if (typeof window !== "undefined") {
+      window.removeEventListener("storage", handleStorage);
+    }
+  };
+}
+
 /**
  * Check if sound effects are enabled.
  * Defaults to false per the planned toggleable SFX behavior.
@@ -41,8 +67,8 @@ export function isSfxEnabled(): boolean {
 export function setSfxEnabled(enabled: boolean): void {
   if (typeof window === "undefined") return;
   localStorage.setItem(SFX_STORAGE_KEY, String(enabled));
+  sfxListeners.forEach((callback) => callback());
 }
-
 /**
  * Preload a sound file into cache so it plays with zero latency on first action.
  */
