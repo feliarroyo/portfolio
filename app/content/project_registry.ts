@@ -186,6 +186,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         iconUrl: "/images/projects/mhgame/icon.png",
         logoUrl: "/images/projects/mhgame/logo.png",
         mediaUrls: [
+            "https://youtu.be/8iYtTdRQjZo",
             "/images/projects/mhgame/image1.jpg",
             "/images/projects/mhgame/image2.png",
             "/images/projects/mhgame/image3.jpg",
