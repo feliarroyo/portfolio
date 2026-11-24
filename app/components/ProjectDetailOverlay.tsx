@@ -8,11 +8,26 @@ import TechBadge from "../components/TechBadge";
 import OverlayButton from "./OverlayButton";
 import { playSound } from "../utils/sound";
 
-// Helper function to identify YouTube URLs and show them as embeds
+// Helper media functions
 const getYouTubeEmbedUrl = (url: string) => {
   const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
   return match ? `https://www.youtube.com/embed/${match[1]}` : null;
 };
+
+type Media =
+  | { kind: "youtube"; src: string }
+  | { kind: "video"; src: string }
+  | { kind: "image"; src: string };
+
+const getMedia = (url: string): Media => {
+  const youtube = getYouTubeEmbedUrl(url);
+  if (youtube) return { kind: "youtube", src: youtube };
+  if (/\.(mp4|webm)$/i.test(url)) return { kind: "video", src: url };
+  return { kind: "image", src: url };
+};
+
+const frame =
+  "shrink-0 w-[85vw] max-w-full sm:w-auto h-56 sm:h-64 md:h-72 relative snap-center border-4 border-gray-800";
 
 export default function ProjectDetailOverlay() {
   const { activeProject, setActiveProject } = useUI();
@@ -20,12 +35,12 @@ export default function ProjectDetailOverlay() {
 
   const [displayProject, setDisplayProject] = useState(activeProject);
   const [prevActiveProject, setPrevActiveProject] = useState(activeProject);
-  const [expandedImage, setExpandedImage] = useState<string | null>(null);
+  const [expandedMedia, setExpandedMedia] = useState<Media | null>(null);
 
   if (activeProject && activeProject !== prevActiveProject) {
     setPrevActiveProject(activeProject);
     setDisplayProject(activeProject);
-    setExpandedImage(null);
+    setExpandedMedia(null);
   } else if (!activeProject && prevActiveProject) {
     setPrevActiveProject(null);
   }
@@ -35,7 +50,7 @@ export default function ProjectDetailOverlay() {
     if (!activeProject) {
       const timer = setTimeout(() => {
         setDisplayProject(null);
-        setExpandedImage(null);
+        setExpandedMedia(null);
       }, 500);
       return () => clearTimeout(timer);
     }
@@ -79,7 +94,7 @@ export default function ProjectDetailOverlay() {
               {/* Back Button */}
               <OverlayButton
                 variant="back"
-                onClick={() => {playSound('close'); setActiveProject(null)}}
+                onClick={() => { playSound('close'); setActiveProject(null) }}
                 className="absolute -left-12 sm:-left-16 md:-left-20"
                 ariaLabel={t.nav.backToProjects}
               />
@@ -149,72 +164,105 @@ export default function ProjectDetailOverlay() {
                   {mediaUrls.length > 0 && (
                     <div className="flex overflow-x-auto gap-4 p-2 snap-x snap-mandatory items-center w-full">
                       {mediaUrls.map((url, index) => {
-                        const youtubeEmbedUrl = getYouTubeEmbedUrl(url);
+                        const media = getMedia(url);
 
-                        return youtubeEmbedUrl ? (
-                          /* Video Container */
-                          <div
-                            key={url}
-                            className="shrink-0 w-[85vw] max-w-full sm:w-auto h-56 sm:h-64 md:h-72 aspect-video relative snap-center border-4 border-gray-800 bg-black"
-                          >
-                            <iframe
-                              src={youtubeEmbedUrl}
-                              title={`${title} video ${index + 1}`}
-                              className="w-full h-full"
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen
-                            />
-                          </div>
-                        ) : (
-                          /* Image Container */
-                          <div
-                            key={url}
-                            className="shrink-0 w-[85vw] max-w-full sm:w-auto h-56 sm:h-64 md:h-72 relative snap-center border-4 border-gray-800 bg-[#e6e6e6] dark:bg-gray-800 cursor-pointer hover:scale-[1.02] transition-transform flex items-center justify-center overflow-hidden"
-                            onClick={() => setExpandedImage(url)}
-                          >
-                            <Image
-                              src={url}
-                              alt={`${title} media ${index + 1}`}
-                              width={1200}
-                              height={800}
-                              sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 600px"
-                              className="w-full sm:w-auto h-full object-contain"
-                            />
-                          </div>
-                        );
+                        switch (media.kind) {
+                          case "youtube":
+                            return (
+                              <div key={url} className={`${frame} aspect-video bg-black`}>
+                                <iframe
+                                  src={media.src}
+                                  title={`${title} video ${index + 1}`}
+                                  className="w-full h-full"
+                                  loading="lazy"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowFullScreen
+                                />
+                              </div>
+                            );
+
+                          case "video":
+                            return (
+                              <div
+                                key={url}
+                                className={`${frame} bg-black flex items-center justify-center cursor-pointer`}
+                                onClick={() => setExpandedMedia(media)}
+                              >
+                                <video
+                                  src={media.src}
+                                  autoPlay
+                                  muted
+                                  loop
+                                  playsInline
+                                  preload="metadata"
+                                  aria-label={`${title} media ${index + 1}`}
+                                  className="w-full sm:w-auto h-full object-contain"
+                                />
+                              </div>
+                            );
+
+                          case "image":
+                            return (
+                              <div
+                                key={url}
+                                className={`${frame} bg-[#e6e6e6] dark:bg-gray-800 cursor-pointer hover:scale-[1.02] transition-transform flex items-center justify-center overflow-hidden`}
+                                onClick={() => setExpandedMedia(media)}
+                              >
+                                <Image
+                                  src={media.src}
+                                  alt={`${title} media ${index + 1}`}
+                                  width={1200}
+                                  height={800}
+                                  sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 600px"
+                                  className="w-full sm:w-auto h-full object-contain"
+                                />
+                              </div>
+                            );
+                        }
                       })}
                     </div>
                   )}
 
                   {/* Full-size Image Lightbox Overlay */}
-                  {expandedImage && (
+                  {expandedMedia && (
                     <div
                       className="fixed inset-0 z-9999 flex items-center justify-center bg-black/80 p-3 sm:p-6 md:p-12 cursor-pointer"
-                      onClick={() => setExpandedImage(null)}
+                      onClick={() => setExpandedMedia(null)}
                     >
-                      {/* Framed Container */}
                       <div
                         className="relative bg-[#e6e6e6] dark:bg-gray-800 border-4 border-black dark:border-white p-3 md:p-5 shadow-[8px_8px_0_0_rgba(0,0,0,1)] cursor-default flex flex-col items-center justify-center w-[92vw] sm:w-auto max-w-[95vw] max-h-[92vh]"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        {/* Close Button */}
                         <OverlayButton
                           variant="close"
-                          onClick={() => setExpandedImage(null)}
+                          onClick={() => setExpandedMedia(null)}
                           className="-top-4 -right-4 sm:-top-5 sm:-right-5 md:-top-6 md:-right-6 md:w-12 md:h-12 z-50"
                           ariaLabel={t.nav.closeImage}
                         />
 
-                        {/* Constrained Image */}
                         <div className="relative flex justify-center items-center w-full max-h-[80vh]">
-                          <Image
-                            src={expandedImage}
-                            alt={t.nav.expandedProjectView}
-                            width={1600}
-                            height={1000}
-                            sizes="95vw"
-                            className="w-full h-auto max-h-[78vh] object-contain"
-                          />
+                          {expandedMedia.kind === "video" ? (
+                            <video
+                              key={expandedMedia.src}
+                              src={expandedMedia.src}
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                              controls
+                              aria-label={t.nav.expandedProjectView}
+                              className="w-full h-auto max-h-[78vh] object-contain"
+                            />
+                          ) : (
+                            <Image
+                              src={expandedMedia.src}
+                              alt={t.nav.expandedProjectView}
+                              width={1600}
+                              height={1000}
+                              sizes="95vw"
+                              className="w-full h-auto max-h-[78vh] object-contain"
+                            />
+                          )}
                         </div>
                       </div>
                     </div>

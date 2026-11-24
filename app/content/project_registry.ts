@@ -81,9 +81,9 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
         iconUrl: "/images/projects/charades/icon.png",
         logoUrl: "/images/projects/charades/logo.png",
         mediaUrls: [
-            "/images/projects/charades/image1.gif",
-            "/images/projects/charades/image2.gif",
-            "/images/projects/charades/image3.gif"
+            "/images/projects/charades/image1.mp4",
+            "/images/projects/charades/image2.mp4",
+            "/images/projects/charades/image3.mp4"
         ],
         theme: {
             headerBgClass: "bg-blue-300 dark:bg-blue-900",
