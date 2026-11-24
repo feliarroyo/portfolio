@@ -6,7 +6,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { playSound } from "../utils/sound";
 
 export default function CVButton() {
-    const { t } = useLanguage();
+    const { language, t } = useLanguage();
     const [isHovered, setIsHovered] = useState(false);
     const [frame, setFrame] = useState(0);
 
@@ -43,7 +43,7 @@ export default function CVButton() {
     return (
         <Tooltip text={t.nav.cv} position="top" forceTooltipOnMobile={true}>
             <a
-                href="/cv.pdf"
+                href={language === "en" ? "/cv_en.pdf" : "/cv_es.pdf"}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={t.nav.cv}
