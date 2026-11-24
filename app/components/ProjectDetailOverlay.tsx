@@ -65,13 +65,6 @@ export default function ProjectDetailOverlay() {
   const headerBg = displayProject?.theme?.headerBgClass || "bg-slate-100 dark:bg-slate-900";
   const mediaUrls = displayProject?.mediaUrls || [];
 
-  // Dynamic Header Size based on character length
-  const getTitleSize = (text: string) => {
-    if (text.length > 22) return "text-xl sm:text-2xl md:text-3xl";
-    if (text.length > 14) return "text-2xl sm:text-3xl md:text-4xl";
-    return "text-3xl md:text-4xl";
-  };
-
   return (
     <div
       className={`fixed inset-0 z-50 pointer-events-none flex justify-center p-4 sm:p-8 pt-28 sm:pt-28 transition-transform duration-500 ease-in-out ${isOpen ? "translate-y-0" : "-translate-y-full"
@@ -82,7 +75,7 @@ export default function ProjectDetailOverlay() {
           <>
             {/* Title Label & Back Button Group */}
             <div
-              className="absolute -top-6 left-1/2 -translate-x-1/2 z-20 px-4 sm:px-8 py-2 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.8)] w-[85%] sm:w-auto flex justify-center text-center"
+              className="absolute -top-6 left-1/2 -translate-x-1/2 z-20 px-4 sm:px-8 py-2 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.8)] w-[85%] sm:w-auto sm:max-w-[70%] flex justify-center text-center"
               style={{
                 borderImage: "url('/assets/tooltip-sprite.png') 4 fill",
                 borderWidth: "4px",
@@ -99,7 +92,7 @@ export default function ProjectDetailOverlay() {
                 ariaLabel={t.nav.backToProjects}
               />
 
-              <h2 className={`${getTitleSize(title)} font-bold text-slate-900 tracking-tight whitespace-normal sm:whitespace-nowrap transition-all`}>
+              <h2 className="text-[clamp(1.25rem,0.9rem+2vw,2.25rem)] text-balance font-bold text-slate-900 tracking-tight leading-tight whitespace-normal sm:whitespace-nowrap transition-all">
                 {title}
               </h2>
             </div>
