@@ -16,7 +16,7 @@ const getYouTubeEmbedUrl = (url: string) => {
 
 export default function ProjectDetailOverlay() {
   const { activeProject, setActiveProject } = useUI();
-  const { language } = useLanguage();
+  const { t, language } = useLanguage();
 
   const [displayProject, setDisplayProject] = useState(activeProject);
   const [prevActiveProject, setPrevActiveProject] = useState(activeProject);
@@ -69,7 +69,7 @@ export default function ProjectDetailOverlay() {
             <div
               className="absolute -top-6 left-1/2 -translate-x-1/2 z-20 px-4 sm:px-8 py-2 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.4)] dark:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.8)] w-[85%] sm:w-auto flex justify-center text-center"
               style={{
-                borderImage: "url('assets/tooltip-sprite.png') 4 fill",
+                borderImage: "url('/assets/tooltip-sprite.png') 4 fill",
                 borderWidth: "4px",
                 borderStyle: "solid",
                 imageRendering: "pixelated"
@@ -81,7 +81,7 @@ export default function ProjectDetailOverlay() {
                 variant="back"
                 onClick={() => {playSound('close'); setActiveProject(null)}}
                 className="absolute -left-12 sm:-left-16 md:-left-20"
-                ariaLabel="Back to Projects"
+                ariaLabel={t.nav.backToProjects}
               />
 
               <h2 className={`${getTitleSize(title)} font-bold text-slate-900 tracking-tight whitespace-normal sm:whitespace-nowrap transition-all`}>
@@ -107,7 +107,7 @@ export default function ProjectDetailOverlay() {
 
                   <div className="w-full">
                     <h4 className="font-bold text-slate-900 dark:text-white mb-3 uppercase tracking-widest font-pixel text-sm border-b-2 border-slate-200 dark:border-slate-700 pb-2">
-                      Tech Stack
+                      {t.nav.techStack}
                     </h4>
                     <div className="flex flex-wrap gap-2 mt-4">
                       {displayProject.techStack.map((tech) => (
@@ -120,14 +120,14 @@ export default function ProjectDetailOverlay() {
                   {displayProject.links.length > 0 && (
                     <div className="w-full mt-8">
                       <h4 className="font-bold text-slate-900 dark:text-white mb-4 uppercase tracking-widest font-pixel text-sm border-b-2 border-slate-200 dark:border-slate-700 pb-2">
-                        Links
+                        {t.nav.links}
                       </h4>
                       <div className="flex flex-col gap-4">
-                        {displayProject.links.map((link, idx) => {
+                        {displayProject.links.map((link) => {
                           const linkLabel = link.label[language as keyof typeof link.label] || link.label.en;
                           return (
                             <a
-                              key={idx}
+                              key={link.url}
                               href={link.url}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -154,7 +154,7 @@ export default function ProjectDetailOverlay() {
                         return youtubeEmbedUrl ? (
                           /* Video Container */
                           <div
-                            key={index}
+                            key={url}
                             className="shrink-0 w-[85vw] max-w-full sm:w-auto h-56 sm:h-64 md:h-72 aspect-video relative snap-center border-4 border-gray-800 bg-black"
                           >
                             <iframe
@@ -168,7 +168,7 @@ export default function ProjectDetailOverlay() {
                         ) : (
                           /* Image Container */
                           <div
-                            key={index}
+                            key={url}
                             className="shrink-0 w-[85vw] max-w-full sm:w-auto h-56 sm:h-64 md:h-72 relative snap-center border-4 border-gray-800 bg-[#e6e6e6] dark:bg-gray-800 cursor-pointer hover:scale-[1.02] transition-transform flex items-center justify-center overflow-hidden"
                             onClick={() => setExpandedImage(url)}
                           >
@@ -202,14 +202,14 @@ export default function ProjectDetailOverlay() {
                           variant="close"
                           onClick={() => setExpandedImage(null)}
                           className="-top-4 -right-4 sm:-top-5 sm:-right-5 md:-top-6 md:-right-6 md:w-12 md:h-12 z-50"
-                          ariaLabel="Close Image"
+                          ariaLabel={t.nav.closeImage}
                         />
 
                         {/* Constrained Image */}
                         <div className="relative flex justify-center items-center w-full max-h-[80vh]">
                           <Image
                             src={expandedImage}
-                            alt="Expanded project view"
+                            alt={t.nav.expandedProjectView}
                             width={1600}
                             height={1000}
                             sizes="95vw"

@@ -15,15 +15,18 @@ const pixelify = Pixelify_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://feliarroyo.vercel.app/"),
   title: "Felipe Arroyo | Portfolio",
-  description: "Portfolio website of Felipe Arroyo, System Engineer, showcasing different skills and projects in the IT field.",
+  description: "Portfolio website of Felipe Arroyo, Systems Engineer, showcasing different skills and projects in the IT field.",
+  openGraph: { images: ["/og.png"], type: "website" },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html suppressHydrationWarning
       lang="en"
-      className={`${pixelify.variable} ${pixelify.variable} h-full antialiased`}
+      className={`${pixelify.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

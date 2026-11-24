@@ -220,7 +220,7 @@ function AboutDialogContent({
       {canGoPrev && (
         <button
           onClick={handlePrevPage}
-          aria-label="Previous Page"
+          aria-label={t.nav.previousPage}
           className="hidden sm:block absolute -left-10 sm:-left-16 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 z-20 hover:scale-180 transition-transform cursor-pointer"
         >
           <div className="w-full h-full arrow-sprite scale-x-[-1]" />
@@ -231,7 +231,7 @@ function AboutDialogContent({
       {canGoNext && (
         <button
           onClick={handleNextPage}
-          aria-label="Next Page"
+          aria-label={t.nav.nextPage}
           className="hidden sm:block absolute -right-10 sm:-right-16 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 z-20 hover:scale-180 transition-transform cursor-pointer"
         >
           <div className="w-full h-full arrow-sprite" />
@@ -251,7 +251,7 @@ function AboutDialogContent({
             onClose();
           }}
           className="sm:hidden absolute top-2 right-2 z-30 scale-75"
-          ariaLabel="Close About Me"
+          ariaLabel={t.nav.closeAboutMe}
         />
 
         {/* Main Content Area */}
@@ -264,7 +264,7 @@ function AboutDialogContent({
             {canGoPrev ? (
               <button
                 onClick={handlePrevPage}
-                aria-label="Previous Page"
+                aria-label={t.nav.previousPage}
                 className="sm:hidden w-8 h-8 z-20 hover:scale-180 transition-transform cursor-pointer"
               >
                 <div className="w-full h-full arrow-sprite scale-x-[-1]" />
@@ -294,7 +294,7 @@ function AboutDialogContent({
             {canGoNext ? (
               <button
                 onClick={handleNextPage}
-                aria-label="Next Page"
+                aria-label={t.nav.nextPage}
                 className="sm:hidden w-8 h-8 z-20 hover:scale-180 transition-transform cursor-pointer"
               >
                 <div className="w-full h-full arrow-sprite" />
@@ -379,7 +379,7 @@ function AboutDialogContent({
                 onClose();
               }}
               className="hidden sm:block static scale-70 hover:scale-85!"
-              ariaLabel="Close About Me"
+              ariaLabel={t.nav.closeAboutMe}
             />
           </div>
         </div>

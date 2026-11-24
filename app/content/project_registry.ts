@@ -106,7 +106,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
             ],
             es: [
                 "QualityTrack es una aplicación web que consiste en una plataforma centralizada para la gestión, trazabilidad y documentación de órdenes de trabajo en la industria del mecanizado y manufactura en un proceso de fabricación. Este fue desarrollado en el marco de una simulación laboral de NoCountry, donde desempeñé el rol de desarrollador back-end junto a un equipo de trabajo.",
-                "En conjunto a todo el equipo, se definieron los requerimientos y funcionalidades de la aplicación, se diseñó la arquitectura del sistema y se implementaron las funcionalidades de back-end utilizando Spring Boot y PostgreSQL. Este sistema luego fue deployeado usando Render para el backend y Neon para la base de datos."
+                "En conjunto a todo el equipo, se definieron los requerimientos y funcionalidades de la aplicación, se diseñó la arquitectura del sistema y se implementaron las funcionalidades de back-end utilizando Spring Boot y PostgreSQL. Este sistema luego fue desplegado usando Render para el backend y Neon para la base de datos."
             ]
         },
         techStack: ["java", "springboot", "postgresql", "docker", "render", "neon"],
